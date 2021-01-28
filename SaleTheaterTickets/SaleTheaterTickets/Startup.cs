@@ -13,6 +13,8 @@ using Microsoft.Extensions.Hosting;
 using SaleTheaterTickets.Data;
 using SaleTheaterTickets.Models;
 using SaleTheaterTickets.Models.ViewModels;
+using SaleTheaterTickets.Repositories;
+using SaleTheaterTickets.Repositories.Interfaces;
 
 namespace SaleTheaterTickets
 {
@@ -41,6 +43,9 @@ namespace SaleTheaterTickets
             services.AddDbContext<SaleTheaterTicketsContext>(options =>
             options.UseMySql(Configuration.GetConnectionString("SaleTheaterTicketsContext"), builder =>
             builder.MigrationsAssembly("SaleTheaterTickets")));
+
+            //Definindo instancia da interfaces e suas referidas implementações
+            services.AddTransient<IPieceRepository, PieceRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
