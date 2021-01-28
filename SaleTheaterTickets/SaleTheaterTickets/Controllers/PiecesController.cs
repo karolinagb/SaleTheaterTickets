@@ -47,8 +47,15 @@ namespace SaleTheaterTickets.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    if((_pieceRepository.GetById(_model.Id)) != null)
+                    {
+                        ViewBag.Error = "Peça já existe!";
+                    }
+
                     var model = _mapper.Map<Piece>(_model);
-                    
+                    _pieceRepository.Insert(model);
+
+                    return RedirectToAction("Index", "Home");
                 }
                 return View(_model);
             }

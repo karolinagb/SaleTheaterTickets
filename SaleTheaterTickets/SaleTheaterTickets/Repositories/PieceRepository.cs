@@ -22,5 +22,10 @@ namespace SaleTheaterTickets.Repositories
             _saleTheaterTicketsContext.Pieces.Add(model);
             _saleTheaterTicketsContext.SaveChanges();
         }
+
+        public Piece GetById(int id)
+        {
+            return _saleTheaterTicketsContext.Pieces.FirstOrDefault(x => x.Id == id);
+        }
     }
 }
