@@ -27,5 +27,10 @@ namespace SaleTheaterTickets.Repositories
         {
             return _saleTheaterTicketsContext.Pieces.FirstOrDefault(x => x.Id == id);
         }
+
+        public List<Piece> FindAll()
+        {
+            return _saleTheaterTicketsContext.Pieces.ToList();
+        }
     }
 }

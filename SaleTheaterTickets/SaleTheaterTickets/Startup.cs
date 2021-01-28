@@ -36,6 +36,7 @@ namespace SaleTheaterTickets
             {
                 cfg.CreateMap<Piece, PieceViewModel>();
                 cfg.CreateMap<PieceViewModel, Piece>();
+               
             });
             IMapper mapper = config.CreateMapper();
             services.AddSingleton(mapper);

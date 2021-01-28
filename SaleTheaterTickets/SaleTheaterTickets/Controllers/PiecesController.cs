@@ -23,7 +23,11 @@ namespace SaleTheaterTickets.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            IEnumerable<Piece> model;
+            IEnumerable<PieceViewModel> _model;
+            model = _pieceRepository.FindAll();
+            _model = _mapper.Map<IEnumerable<PieceViewModel>>(model);
+            return View(_model);
         }
 
         public ActionResult Create()
@@ -55,7 +59,7 @@ namespace SaleTheaterTickets.Controllers
                     var model = _mapper.Map<Piece>(_model);
                     _pieceRepository.Insert(model);
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index");
                 }
                 return View(_model);
             }
