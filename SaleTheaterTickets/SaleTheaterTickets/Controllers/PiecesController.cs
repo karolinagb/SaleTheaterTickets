@@ -148,5 +148,48 @@ namespace SaleTheaterTickets.Controllers
 
             return View(model);
         }
+
+        public ActionResult Inactivate(int? id)
+        {
+            if(id == null)
+            {
+                Console.WriteLine("Id não informado");
+                return RedirectToAction("Index");
+            }
+
+            var model = _pieceRepository.GetById(id.Value);
+
+            if(model == null)
+            {
+                Console.WriteLine("Peça não encontrada!");
+                return RedirectToAction("Index");
+            }
+
+            var _model = _mapper.Map<PieceViewModel>(model);
+
+            return View(_model);
+        }
+
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public ActionResult Inactivate(PieceViewModel model, int id)
+        {
+            if (id != model.Id)
+            {
+                Console.WriteLine("Id diferente!");
+                RedirectToAction("Index");
+            }
+
+            try
+            {
+                _pieceRepository.Remove(id);
+                return RedirectToAction("Index");
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return RedirectToAction("Index");
+            }
+        }
     }
 }

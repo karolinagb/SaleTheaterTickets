@@ -38,5 +38,12 @@ namespace SaleTheaterTickets.Repositories
             _saleTheaterTicketsContext.Pieces.Update(model);
             _saleTheaterTicketsContext.SaveChanges();
         }
+
+        public void Remove(int id)
+        {
+            var model = _saleTheaterTicketsContext.Pieces.Find(id);
+            _saleTheaterTicketsContext.Pieces.Remove(model);
+            _saleTheaterTicketsContext.SaveChanges();
+        }
     }
 }

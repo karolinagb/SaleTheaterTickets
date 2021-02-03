@@ -9,5 +9,6 @@ namespace SaleTheaterTickets.Repositories.Interfaces
         public Piece GetById(int id);
         public List<Piece> FindAll();
         public void Update(Piece model);
+        public void Remove(int id);
     }
 }
