@@ -51,7 +51,7 @@ namespace SaleTheaterTickets.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    if((_pieceRepository.GetById(_model.Id)) != null)
+                    if((_pieceRepository.GetById(_model.Id) != null))
                     {
                         ViewBag.Error = "Peça já existe!";
                     }
@@ -67,6 +67,56 @@ namespace SaleTheaterTickets.Controllers
             {
                 Console.WriteLine(ex.Message);
                 return View(_model);
+            }
+        }
+
+        public ActionResult Edit(int? id)
+        {
+            if(id == null)
+            {
+                Console.WriteLine("Id deve ser forneciado");
+                return View("Index");
+            }
+
+            //var _model = _mapper.Map<Piece>(model);
+            var model = _pieceRepository.GetById(id.Value);
+
+            if(model == null)
+            {
+                Console.WriteLine("Peça não encontrada!");
+                return View("Index");
+            }
+
+            var _model = _mapper.Map<PieceViewModel>(model);
+
+            return View(_model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(PieceViewModel model, int id)
+        {
+            if (!(ModelState.IsValid))
+            {
+                return View(model);
+            }
+
+            if (id != model.Id)
+            {
+                return View(model);
+            }
+
+            try
+            {
+                var _model = _mapper.Map<Piece>(model);
+
+                _pieceRepository.Update(_model);
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return View(model);
             }
         }
     }

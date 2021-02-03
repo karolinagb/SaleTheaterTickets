@@ -32,5 +32,11 @@ namespace SaleTheaterTickets.Repositories
         {
             return _saleTheaterTicketsContext.Pieces.ToList();
         }
+
+        public void Update(Piece model)
+        {
+            _saleTheaterTicketsContext.Pieces.Update(model);
+            _saleTheaterTicketsContext.SaveChanges();
+        }
     }
 }

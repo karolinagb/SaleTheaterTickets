@@ -1,6 +1,5 @@
 C:\projetos\SaleTheaterTickets\SaleTheaterTickets\SaleTheaterTickets\bin\Debug\netcoreapp3.1\appsettings.Development.json
 C:\projetos\SaleTheaterTickets\SaleTheaterTickets\SaleTheaterTickets\bin\Debug\netcoreapp3.1\appsettings.json
-C:\projetos\SaleTheaterTickets\SaleTheaterTickets\SaleTheaterTickets\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
 C:\projetos\SaleTheaterTickets\SaleTheaterTickets\SaleTheaterTickets\bin\Debug\netcoreapp3.1\SaleTheaterTickets.exe
 C:\projetos\SaleTheaterTickets\SaleTheaterTickets\SaleTheaterTickets\obj\Debug\netcoreapp3.1\SaleTheaterTickets.csprojAssemblyReference.cache
 C:\projetos\SaleTheaterTickets\SaleTheaterTickets\SaleTheaterTickets\obj\Debug\netcoreapp3.1\SaleTheaterTickets.AssemblyInfoInputs.cache
@@ -406,3 +405,5 @@ C:\projetos\SaleTheaterTickets\SaleTheaterTickets\SaleTheaterTickets\obj\Debug\n
 C:\projetos\SaleTheaterTickets\SaleTheaterTickets\SaleTheaterTickets\obj\Debug\netcoreapp3.1\SaleTheaterTickets.MvcApplicationPartsAssemblyInfo.cs
 C:\projetos\SaleTheaterTickets\SaleTheaterTickets\SaleTheaterTickets\obj\Debug\netcoreapp3.1\SaleTheaterTickets.MvcApplicationPartsAssemblyInfo.cache
 C:\projetos\SaleTheaterTickets\SaleTheaterTickets\SaleTheaterTickets\obj\Debug\netcoreapp3.1\Razor\Views\Pieces\Index.cshtml.g.cs
+C:\projetos\SaleTheaterTickets\SaleTheaterTickets\SaleTheaterTickets\obj\Debug\netcoreapp3.1\Razor\Views\Pieces\Edit.cshtml.g.cs
+C:\projetos\SaleTheaterTickets\SaleTheaterTickets\SaleTheaterTickets\obj\Debug\netcoreapp3.1\scopedcss\bundle\SaleTheaterTickets.styles.css
