@@ -407,3 +407,4 @@ C:\projetos\SaleTheaterTickets\SaleTheaterTickets\SaleTheaterTickets\obj\Debug\n
 C:\projetos\SaleTheaterTickets\SaleTheaterTickets\SaleTheaterTickets\obj\Debug\netcoreapp3.1\Razor\Views\Pieces\Index.cshtml.g.cs
 C:\projetos\SaleTheaterTickets\SaleTheaterTickets\SaleTheaterTickets\obj\Debug\netcoreapp3.1\Razor\Views\Pieces\Edit.cshtml.g.cs
 C:\projetos\SaleTheaterTickets\SaleTheaterTickets\SaleTheaterTickets\obj\Debug\netcoreapp3.1\scopedcss\bundle\SaleTheaterTickets.styles.css
+C:\projetos\SaleTheaterTickets\SaleTheaterTickets\SaleTheaterTickets\obj\Debug\netcoreapp3.1\Razor\Views\Pieces\Details.cshtml.g.cs

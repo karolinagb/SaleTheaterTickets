@@ -103,7 +103,8 @@ namespace SaleTheaterTickets.Controllers
 
             if (id != model.Id)
             {
-                return View(model);
+                Console.WriteLine("Id diferente!");
+                RedirectToAction("Index");
             }
 
             try
@@ -118,6 +119,34 @@ namespace SaleTheaterTickets.Controllers
                 Console.WriteLine(ex.Message);
                 return View(model);
             }
+        }
+
+        public ActionResult Details(PieceViewModel model, int? id)
+        {
+            if(id == null)
+            {
+                Console.WriteLine("Id não informado");
+                return RedirectToAction("Index");
+            }
+
+            if(id != model.Id)
+            {
+                Console.WriteLine("Id diferente!");
+                return RedirectToAction("Index");
+            }
+
+            var _model = _mapper.Map<Piece>(model);
+            _model = _pieceRepository.GetById(id.Value);
+
+            if(_model == null)
+            {
+                Console.WriteLine("Peça não encontrada!");
+                return RedirectToAction("Index");
+            }
+
+            model = _mapper.Map<PieceViewModel>(_model);
+
+            return View(model);
         }
     }
 }
