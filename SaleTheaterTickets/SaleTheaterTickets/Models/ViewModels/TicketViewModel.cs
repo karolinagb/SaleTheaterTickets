@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SaleTheaterTickets.Models.ViewModels
+namespace SaleTheaterTickets.Models
 {
     public class TicketViewModel
     {
@@ -39,7 +39,7 @@ namespace SaleTheaterTickets.Models.ViewModels
 
         [Required(ErrorMessage = "Escolha a peça!")]
         [Display(Name = "Peça")]
-        public Piece Piece { get; set; }
+        public ICollection<Piece> Pieces { get; set; }
 
         public ICollection<GeneratedTicket> GeneratedTickets { get; set; }
     }

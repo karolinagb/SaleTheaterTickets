@@ -47,6 +47,7 @@ namespace SaleTheaterTickets
 
             //Definindo instancia da interfaces e suas referidas implementações
             services.AddTransient<IPieceRepository, PieceRepository>();
+            services.AddTransient<ITicketRepository, TicketRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
