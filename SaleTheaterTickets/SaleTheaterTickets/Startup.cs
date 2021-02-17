@@ -36,6 +36,8 @@ namespace SaleTheaterTickets
             {
                 cfg.CreateMap<Piece, PieceViewModel>();
                 cfg.CreateMap<PieceViewModel, Piece>();
+                cfg.CreateMap<Ticket, TicketViewModel>();
+                cfg.CreateMap<TicketViewModel, Ticket>();
                
             });
             IMapper mapper = config.CreateMapper();

@@ -34,10 +34,10 @@ namespace SaleTheaterTickets.Models
         [DataType(DataType.Time)]
         public TimeSpan Schedule { get; set; }
 
-
+        [Required(ErrorMessage = "Escolha a peça!")]
+        [Display(Name = "Peça")]
         public int PieceId { get; set; }
 
-        [Required(ErrorMessage = "Escolha a peça!")]
         [Display(Name = "Peça")]
         public ICollection<Piece> Pieces { get; set; }
 

@@ -13,12 +13,14 @@ namespace SaleTheaterTickets.Controllers
     public class TicketsController : Controller
     {
         private readonly ITicketRepository _ticketRepository;
+        private readonly IPieceRepository _pieceRepository;
         private readonly IMapper _mapper;
 
-        public TicketsController(ITicketRepository ticketRepository, IMapper mapper)
+        public TicketsController(ITicketRepository ticketRepository, IMapper mapper, IPieceRepository pieceRepository)
         {
             _ticketRepository = ticketRepository;
             _mapper = mapper;
+            _pieceRepository = pieceRepository;
         }
 
         public IActionResult Index()
@@ -28,7 +30,12 @@ namespace SaleTheaterTickets.Controllers
 
         public ActionResult Create()
         {
-            return View();
+            var pieces = _pieceRepository.FindAll();
+
+            var model = new TicketViewModel();
+            model.Pieces = pieces;
+
+            return View(model);
         }
 
         [HttpPost]
@@ -49,6 +56,10 @@ namespace SaleTheaterTickets.Controllers
 
                     return RedirectToAction("Index");
                 }
+                var pieces = _pieceRepository.FindAll();
+
+                model.Pieces = pieces;
+
                 return View(model);
             }
             catch(Exception ex)
