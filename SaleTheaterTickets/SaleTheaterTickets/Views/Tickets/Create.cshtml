@@ -9,6 +9,7 @@
         <h4>Cadastro de Ingressos</h4>
         <form asp-action="Create" class="form-horizontal">
             <hr />
+            <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Price" class="col-md-2 control-label"></label>
                 <div class="col-md-12">
@@ -41,6 +42,7 @@
                 <label asp-for="PieceId" class="col-md-2 control-label"></label>
                 <div class="col-md-12">
                     <select asp-for="PieceId" asp-items="@(new SelectList(Model.Pieces, "Id", "Name"))" class="form-control"></select>
+                    <span asp-validation-for="PieceId" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group">

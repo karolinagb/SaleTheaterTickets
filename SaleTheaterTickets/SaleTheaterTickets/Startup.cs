@@ -1,18 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SaleTheaterTickets.Data;
 using SaleTheaterTickets.Models;
-using SaleTheaterTickets.Models.ViewModels;
 using SaleTheaterTickets.Repositories;
 using SaleTheaterTickets.Repositories.Interfaces;
 
@@ -38,7 +32,8 @@ namespace SaleTheaterTickets
                 cfg.CreateMap<PieceViewModel, Piece>();
                 cfg.CreateMap<Ticket, TicketViewModel>();
                 cfg.CreateMap<TicketViewModel, Ticket>();
-               
+                //CreateMap<Contrato, ContratoDto>().ForMember(p => p.Descricao, x => x.Ignore());
+
             });
             IMapper mapper = config.CreateMapper();
             services.AddSingleton(mapper);

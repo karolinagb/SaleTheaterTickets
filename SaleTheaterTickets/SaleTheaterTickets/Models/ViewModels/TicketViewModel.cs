@@ -11,15 +11,14 @@ namespace SaleTheaterTickets.Models
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Digite o preço do Ingresso!")]
-        [Column(TypeName = "decimal(18,2)")]
         [DisplayFormat(DataFormatString = "{0:F2}")]
         [Display(Name = "Preço")]
+        [Range(1, 9999.99, ErrorMessage = "O valor para {0} deve estar entre {1} e {2}.")]
         [DataType(DataType.Currency)]
         public decimal Price { get; set; }
 
-        [Required(ErrorMessage = "Digite a quantidade de poltronas!")]
         [Display(Name = "Quantidade de poltronas")]
+        [Range(1, 9999, ErrorMessage = "O valor para {0} deve estar entre {1} e {2}.")]
         public int QuantityOfSeats { get; set; }
 
         [Required(ErrorMessage = "Digite a Data!")]
@@ -34,7 +33,6 @@ namespace SaleTheaterTickets.Models
         [DataType(DataType.Time)]
         public TimeSpan Schedule { get; set; }
 
-        [Required(ErrorMessage = "Escolha a peça!")]
         [Display(Name = "Peça")]
         public int PieceId { get; set; }
 
