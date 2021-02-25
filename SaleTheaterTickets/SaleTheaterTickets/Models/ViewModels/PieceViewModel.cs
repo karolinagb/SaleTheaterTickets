@@ -12,7 +12,7 @@ namespace SaleTheaterTickets.Models
         public int Id { get; set; }
 
         [Display(Name = "Nome")]
-        [Required(ErrorMessage = "Digite o nome da peça!")]
+        //[Required(ErrorMessage = "Digite o nome da peça!")]
         public string Name { get; set; }
 
         public ICollection<Ticket> Tickets { get; set; }

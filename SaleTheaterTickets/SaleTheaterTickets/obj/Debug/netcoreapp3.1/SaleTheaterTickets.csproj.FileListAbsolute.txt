@@ -410,3 +410,6 @@ C:\projetos\SaleTheaterTickets\SaleTheaterTickets\SaleTheaterTickets\obj\Debug\n
 C:\projetos\SaleTheaterTickets\SaleTheaterTickets\SaleTheaterTickets\obj\Debug\netcoreapp3.1\Razor\Views\Pieces\Details.cshtml.g.cs
 C:\projetos\SaleTheaterTickets\SaleTheaterTickets\SaleTheaterTickets\obj\Debug\netcoreapp3.1\Razor\Views\Pieces\Inactivate.cshtml.g.cs
 C:\projetos\SaleTheaterTickets\SaleTheaterTickets\SaleTheaterTickets\obj\Debug\netcoreapp3.1\Razor\Views\Tickets\Create.cshtml.g.cs
+C:\projetos\SaleTheaterTickets\SaleTheaterTickets\SaleTheaterTickets\bin\Debug\netcoreapp3.1\FluentValidation.dll
+C:\projetos\SaleTheaterTickets\SaleTheaterTickets\SaleTheaterTickets\bin\Debug\netcoreapp3.1\FluentValidation.AspNetCore.dll
+C:\projetos\SaleTheaterTickets\SaleTheaterTickets\SaleTheaterTickets\bin\Debug\netcoreapp3.1\FluentValidation.DependencyInjectionExtensions.dll

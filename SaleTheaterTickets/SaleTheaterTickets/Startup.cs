@@ -1,4 +1,5 @@
 using AutoMapper;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -45,6 +46,9 @@ namespace SaleTheaterTickets
             //Definindo instancia da interfaces e suas referidas implementações
             services.AddTransient<IPieceRepository, PieceRepository>();
             services.AddTransient<ITicketRepository, TicketRepository>();
+
+            //Adicionando o Fluent Validation ao pipeline
+            services.AddMvc().AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<Startup>());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

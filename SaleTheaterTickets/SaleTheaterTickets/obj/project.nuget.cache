@@ -1,10 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "LLOnAcblj3le/6N5GjzwM016+r9PnU9jQxAt3iQpf5oJtqcB7lzFybOUpxlwqaaMmqLW+M8vYamBv0kXaH5AgQ==",
+  "dgSpecHash": "n5+nqWTms1stikT5z+JprIX4kIjUECFu4ORVuwBsIP73QvVvRAqeln/eWDb0/OX2jcVVuuUA7zYZvv558MV90A==",
   "success": true,
   "projectFilePath": "C:\\projetos\\SaleTheaterTickets\\SaleTheaterTickets\\SaleTheaterTickets\\SaleTheaterTickets.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Karol\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
+    "C:\\Users\\Karol\\.nuget\\packages\\fluentvalidation\\9.5.1\\fluentvalidation.9.5.1.nupkg.sha512",
+    "C:\\Users\\Karol\\.nuget\\packages\\fluentvalidation.aspnetcore\\9.5.1\\fluentvalidation.aspnetcore.9.5.1.nupkg.sha512",
+    "C:\\Users\\Karol\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\9.5.1\\fluentvalidation.dependencyinjectionextensions.9.5.1.nupkg.sha512",
     "C:\\Users\\Karol\\.nuget\\packages\\jquery.inputmask\\5.0.5\\jquery.inputmask.5.0.5.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\Karol\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.extensions\\3.1.11\\microsoft.aspnetcore.mvc.razor.extensions.3.1.11.nupkg.sha512",
