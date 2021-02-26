@@ -19,9 +19,9 @@ namespace SaleTheaterTickets.Models
         [Display(Name = "Quantidade de poltronas")]
         public int QuantityOfSeats { get; set; }
 
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         [Display(Name = "Data")]
-        [DataType(DataType.Date)]
+        //[DataType(DataType.Date)]
         public DateTime Date { get; set; }
 
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:hh\\:mm}")]

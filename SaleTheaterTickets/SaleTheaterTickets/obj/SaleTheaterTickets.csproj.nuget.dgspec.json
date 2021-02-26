@@ -72,10 +72,6 @@
             "Pomelo.EntityFrameworkCore.MySql": {
               "target": "Package",
               "version": "[3.2.4, )"
-            },
-            "jQuery.InputMask": {
-              "target": "Package",
-              "version": "[5.0.5, )"
             }
           },
           "imports": [
