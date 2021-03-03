@@ -29,11 +29,15 @@ namespace SaleTheaterTickets.Models
         [DataType(DataType.Time)]
         public TimeSpan Schedule { get; set; }
 
+        public Piece Piece { get; set; }
+
         [Display(Name = "Peça")]
         public int PieceId { get; set; }
 
         public ICollection<Piece> Pieces { get; set; }
 
         public ICollection<GeneratedTicket> GeneratedTickets { get; set; }
+
+        public ICollection<int> Seats { get; set; }
     }
 }

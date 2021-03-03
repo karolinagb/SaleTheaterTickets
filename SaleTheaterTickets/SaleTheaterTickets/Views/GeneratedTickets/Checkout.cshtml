@@ -1,0 +1,29 @@
+﻿@model GeneratedTicketViewModel
+
+<h3 class="text-center">
+    Comprando Ingresso
+</h3>
+<form asp-action="CompletCheckout" method="post" class="form-horizontal" role="form">
+    -->
+    @Html.Hidden(Model.Ticket.Id)
+
+    <div class="form-group">
+        <label asp-for="Seat" class="col-md-4 control-label"></label>
+        <div class="col-md-5">
+            <input asp-for="Seat" class="form-control" />
+            <span asp-validation-for="Seat" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="FormOfPayment" class="col-md-4 control-label"></label>
+        <div class="col-md-5">
+            <input asp-for="FormOfPayment" class="form-control" />
+            <span asp-validation-for="FormOfPayment" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="btn-group col-md-5">
+            <input class="btn btn-success" type="submit" value="Concluir Pedido" />
+        </div>
+    </div>
+</form>

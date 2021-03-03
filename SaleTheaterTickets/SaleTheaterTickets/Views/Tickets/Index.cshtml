@@ -1,0 +1,40 @@
+﻿@model IEnumerable<TicketViewModel>
+
+<div class="row">
+    <div class="col-md-3">
+
+        <h4>Ingressos Disponíveis</h4>
+
+    </div>
+    <div class="col-md-3">
+        <a asp-action="Create" type="button" class="btn btn-primary">Cadastrar Ingresso</a>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">@Html.DisplayNameFor(x => x.Piece.Name)</th>
+            <th scope="col">@Html.DisplayNameFor(x => x.Price)</th>
+            <th scope="col">@Html.DisplayNameFor(x => x.Date)</th>
+            <th scope="col">@Html.DisplayNameFor(x => x.Schedule)</th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ticket in Model)
+        {
+        <tr>
+            <td>@Html.DisplayFor(x => ticket.Piece.Name)</td>
+            <td>@Html.DisplayFor(x => ticket.Price.ToString("c"))</td>
+            <td>@Html.DisplayFor(x => ticket.Date.ToString("dd/MM/yyyy"))</td>
+            <td>@Html.DisplayFor(x => ticket.Schedule.ToString("HH:mm"))</td>
+            <td>
+                <a asp-controller="GeneratedTickets" asp-action="Checkout" asp-route-id="@ticket.Id">Comprar</a>
+                @*<a asp-action="Details" asp-route-id="@ticket.Id">Detalhes</a>
+                <a asp-action="Inactivate" asp-route-id="@ticket.Id">Inativar</a>*@
+            </td>
+        </tr>
+        }
+</table>

@@ -1,12 +1,9 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using SaleTheaterTickets.Models;
-using SaleTheaterTickets.Models.ViewModels;
 using SaleTheaterTickets.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace SaleTheaterTickets.Controllers
 {
@@ -51,10 +48,12 @@ namespace SaleTheaterTickets.Controllers
                         Console.WriteLine("Ingresso já existe!");
                     }
 
+                    model.Seats = RegistrationSeats(model.QuantityOfSeats);
+
                     var _model = _mapper.Map<Ticket>(model);
                     _ticketRepository.Insert(_model);
 
-                    return RedirectToAction("Index");
+                    return View();
                 }
                 var pieces = _pieceRepository.FindAll();
 
@@ -67,6 +66,19 @@ namespace SaleTheaterTickets.Controllers
                 Console.WriteLine(ex.Message);
                 return View(model);
             }
+        }
+
+        public List<int> RegistrationSeats(int quantityOfSeats)
+        {
+            List<int> Seats = new List<int>();
+            var contador = 1;
+            while (contador <= quantityOfSeats)
+            {
+                Seats.Add(contador);
+                contador++;
+            }
+
+            return Seats;
         }
     }
 }
