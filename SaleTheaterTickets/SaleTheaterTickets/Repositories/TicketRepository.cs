@@ -1,6 +1,8 @@
-﻿using SaleTheaterTickets.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using SaleTheaterTickets.Data;
 using SaleTheaterTickets.Models;
 using SaleTheaterTickets.Repositories.Interfaces;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace SaleTheaterTickets.Repositories
@@ -22,7 +24,12 @@ namespace SaleTheaterTickets.Repositories
 
         public Ticket GetById(int id)
         {
-            return _saleTheaterTicketsContext.Tickets.FirstOrDefault(x => x.Id == id);
+            return _saleTheaterTicketsContext.Tickets.Include(x => x.Piece).FirstOrDefault(x => x.Id == id);
+        }
+
+        public List<Ticket> FindAll()
+        {
+            return _saleTheaterTicketsContext.Tickets.Include(x => x.Piece).ToList();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using SaleTheaterTickets.Models;
+using System.Collections.Generic;
 
 namespace SaleTheaterTickets.Repositories.Interfaces
 {
@@ -6,5 +7,6 @@ namespace SaleTheaterTickets.Repositories.Interfaces
     {
         public void Insert(Ticket model);
         public Ticket GetById(int id);
+        public List<Ticket> FindAll();
     }
 }

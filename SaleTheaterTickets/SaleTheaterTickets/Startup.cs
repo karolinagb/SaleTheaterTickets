@@ -32,7 +32,9 @@ namespace SaleTheaterTickets
                 cfg.CreateMap<Piece, PieceViewModel>();
                 cfg.CreateMap<PieceViewModel, Piece>();
                 cfg.CreateMap<Ticket, TicketViewModel>();
-                cfg.CreateMap<TicketViewModel, Ticket>().ForSourceMember(x => x.Seats, x => x.DoNotValidate()); //ignorando propriedade do source
+                cfg.CreateMap<TicketViewModel, Ticket>()
+                    .ForSourceMember(x => x.Seats, x => x.DoNotValidate()) //ignorando propriedade do source
+                    .ForSourceMember(x => x.Pieces, x => x.DoNotValidate());
                 //CreateMap<Contrato, ContratoDto>().ForMember(p => p.Descricao, x => x.Ignore());
                 cfg.CreateMap<GeneratedTicketViewModel, GeneratedTicket>();
                 cfg.CreateMap<GeneratedTicket, GeneratedTicketViewModel>();
@@ -48,6 +50,7 @@ namespace SaleTheaterTickets
             //Definindo instancia da interfaces e suas referidas implementações
             services.AddTransient<IPieceRepository, PieceRepository>();
             services.AddTransient<ITicketRepository, TicketRepository>();
+            services.AddTransient<IGeneratedTicketRepository, GeneratedTicketRepository>();
 
             //Adicionando o Fluent Validation ao pipeline
             services.AddMvc().AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<Startup>());

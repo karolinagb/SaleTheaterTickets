@@ -18,7 +18,6 @@
             <th scope="col">@Html.DisplayNameFor(x => x.Price)</th>
             <th scope="col">@Html.DisplayNameFor(x => x.Date)</th>
             <th scope="col">@Html.DisplayNameFor(x => x.Schedule)</th>
-
             <th></th>
         </tr>
     </thead>
@@ -27,13 +26,13 @@
         {
         <tr>
             <td>@Html.DisplayFor(x => ticket.Piece.Name)</td>
-            <td>@Html.DisplayFor(x => ticket.Price.ToString("c"))</td>
-            <td>@Html.DisplayFor(x => ticket.Date.ToString("dd/MM/yyyy"))</td>
-            <td>@Html.DisplayFor(x => ticket.Schedule.ToString("HH:mm"))</td>
+            <td>@*@Html.DisplayFor(x => ticket.Price.ToString("C2"))*@ @ticket.Price.ToString("c")</td>
+            <td>@ticket.Date.ToString("dd/MM/yyyy")</td>
+            <td>@ticket.Schedule.ToString("hh\\:mm")</td>
             <td>
-                <a asp-controller="GeneratedTickets" asp-action="Checkout" asp-route-id="@ticket.Id">Comprar</a>
-                @*<a asp-action="Details" asp-route-id="@ticket.Id">Detalhes</a>
-                <a asp-action="Inactivate" asp-route-id="@ticket.Id">Inativar</a>*@
+                <a asp-controller="GeneratedTickets" asp-action="Create" asp-route-id="@ticket.Id">Comprar |</a>
+                <a asp-action="Details" asp-route-id="@ticket.Id"> Detalhes |</a>
+                <a asp-action="Inactivate" asp-route-id="@ticket.Id"> Inativar</a>
             </td>
         </tr>
         }

@@ -1,0 +1,39 @@
+﻿@model GeneratedTicketViewModel
+
+<h3 class="text-center">
+    Comprando Ingresso
+</h3>
+
+<form asp-controller="GeneratedTickets" asp-action="Create" class="form-horizontal">
+
+    <input type="hidden" asp-for="TicketId" value="@Model.TicketId"/>
+
+    <div class="form-group">
+        <label asp-for="CustomerName" class="col-md-4 control-label"></label>
+        <div class="col-md-5">
+            <input asp-for="CustomerName" class="form-control" />
+            @*<span asp-validation-for="CustomerName" class="text-danger"></span>*@
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="Seat" class="col-md-4 control-label"></label>
+        <div class="col-md-5">
+            <input asp-for="Seat" class="form-control" />
+            <span asp-validation-for="Seat" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="FormOfPayment" class="col-md-4 control-label"></label>
+        <div class="col-md-5">
+            <select asp-for="FormOfPayment" asp-items="Html.GetEnumSelectList<FormOfPayment>()" class="form-control">
+                <option value="">Selecione</option>
+            </select>
+            @*<span asp-validation-for="FormOfPayment" class="text-danger"></span>*@
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="btn-group col-md-5">
+            <input class="btn btn-success" type="submit" value="Concluir Compra" />
+        </div>
+    </div>
+</form>
