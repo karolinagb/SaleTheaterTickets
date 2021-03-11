@@ -8,5 +8,6 @@ namespace SaleTheaterTickets.Repositories.Interfaces
         public void Insert(Ticket model);
         public Ticket GetById(int id);
         public List<Ticket> FindAll();
+        public void Update(Ticket model);
     }
 }
