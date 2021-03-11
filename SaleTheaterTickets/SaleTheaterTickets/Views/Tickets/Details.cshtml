@@ -1,0 +1,37 @@
+﻿@model TicketViewModel
+
+@{
+    ViewData["Title"] = "Detalhes do Ingresso";
+}
+
+<h3>@ViewData["Title"]</h3>
+
+<hr />
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(m => m.Piece)</dt>
+        <dd>@Html.DisplayFor(m => m.Piece.Name)</dd>
+    </dl>
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(m => m.QuantityOfSeats)</dt>
+        <dd>@Html.DisplayFor(m => m.QuantityOfSeats)</dd>
+    </dl>
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(m => m.Schedule)</dt>
+        <dd>@Model.Schedule.ToString("hh\\:mm")</dd>
+    </dl>
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(m => m.Date)</dt>
+        <dd>@Model.Date.ToString("dd/MM/yyyy")</dd>
+    </dl>
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(m => m.Price)</dt>
+        <dd>@Html.DisplayFor(m => m.Price)</dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Editar</a>
+    <a asp-action="Inactivate" asp-route-id="@Model.Id" class="btn btn-primary">Inativar</a>
+    <a asp-action="Index">Voltar</a>
+</div>

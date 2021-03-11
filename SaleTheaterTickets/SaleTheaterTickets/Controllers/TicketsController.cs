@@ -127,6 +127,34 @@ namespace SaleTheaterTickets.Controllers
             return View(model);
         }
 
+        public ActionResult Details(TicketViewModel model, int? id)
+        {
+            if(id == null)
+            {
+                Console.WriteLine("Id não informado");
+                return RedirectToAction("Index");
+            }
+
+            if(id != model.Id)
+            {
+                Console.WriteLine("Id diferente");
+                return RedirectToAction("Index");
+            } 
+
+            var _model = _mapper.Map<Ticket>(model);
+            _model = _ticketRepository.GetById(id.Value);
+
+            if(_model == null)
+            {
+                Console.WriteLine("Ingresso não encontrado");
+                return RedirectToAction("Index");
+            }
+
+            model = _mapper.Map<TicketViewModel>(_model);
+
+            return View(model);
+        }
+
         public List<int> RegistrationSeats(int quantityOfSeats)
         {
             List<int> Seats = new List<int>();

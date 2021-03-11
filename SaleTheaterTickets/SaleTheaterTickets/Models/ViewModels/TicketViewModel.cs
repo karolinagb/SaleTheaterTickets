@@ -26,6 +26,7 @@ namespace SaleTheaterTickets.Models
         [DataType(DataType.Time)]
         public TimeSpan Schedule { get; set; }
 
+        [Display(Name = "Peça")]
         public Piece Piece { get; set; }
 
         [Display(Name = "Peça")]
