@@ -19,6 +19,7 @@ namespace SaleTheaterTickets.Data
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Piece>().HasQueryFilter(piece => EF.Property<bool>(piece, "IsDeleted") == false);
+            modelBuilder.Entity<Ticket>().HasQueryFilter(ticket => EF.Property<bool>(ticket, "IsDeleted") == false);
         }
 
         public override int SaveChanges()

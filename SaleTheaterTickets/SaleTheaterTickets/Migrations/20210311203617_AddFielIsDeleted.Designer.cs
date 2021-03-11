@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SaleTheaterTickets.Data;
 
 namespace SaleTheaterTickets.Migrations
 {
     [DbContext(typeof(SaleTheaterTicketsContext))]
-    partial class SaleTheaterTicketsContextModelSnapshot : ModelSnapshot
+    [Migration("20210311203617_AddFielIsDeleted")]
+    partial class AddFielIsDeleted
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

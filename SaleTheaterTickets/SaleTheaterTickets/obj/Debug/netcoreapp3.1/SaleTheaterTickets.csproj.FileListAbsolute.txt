@@ -418,3 +418,4 @@ C:\projetos\SaleTheaterTickets\SaleTheaterTickets\SaleTheaterTickets\obj\Debug\n
 C:\projetos\SaleTheaterTickets\SaleTheaterTickets\SaleTheaterTickets\obj\Debug\netcoreapp3.1\Razor\Views\GeneratedTickets\Create.cshtml.g.cs
 C:\projetos\SaleTheaterTickets\SaleTheaterTickets\SaleTheaterTickets\obj\Debug\netcoreapp3.1\Razor\Views\Tickets\Edit.cshtml.g.cs
 C:\projetos\SaleTheaterTickets\SaleTheaterTickets\SaleTheaterTickets\obj\Debug\netcoreapp3.1\Razor\Views\Tickets\Details.cshtml.g.cs
+C:\projetos\SaleTheaterTickets\SaleTheaterTickets\SaleTheaterTickets\obj\Debug\netcoreapp3.1\Razor\Views\Tickets\Inactivate.cshtml.g.cs
