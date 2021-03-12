@@ -9,7 +9,7 @@ namespace SaleTheaterTickets.Repositories.Interfaces
         public Ticket GetById(int id);
         public List<Ticket> FindAll();
         public void Update(Ticket model);
-
         public void Remove(int id);
+        public int FindAllByPiece(Ticket model);
     }
 }

@@ -44,5 +44,11 @@ namespace SaleTheaterTickets.Repositories
             _saleTheaterTicketsContext.Tickets.Remove(model);
             _saleTheaterTicketsContext.SaveChanges();
         }
+
+        public int FindAllByPiece(Ticket model)
+        {
+            return _saleTheaterTicketsContext.Tickets.Include(x => x.Piece).Where(x => x.PieceId == model.PieceId
+            && x.Date == model.Date && x.Schedule == model.Schedule).Count();
+        }
     }
 }

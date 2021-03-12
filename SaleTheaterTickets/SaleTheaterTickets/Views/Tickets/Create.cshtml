@@ -19,14 +19,14 @@
             <div class="form-group">
                 <label asp-for="QuantityOfSeats" class="col-md-2 control-label"></label>
                 <div class="col-md-12">
-                    <input asp-for="QuantityOfSeats" type="text" class="form-control" id="number"/>
+                    <input asp-for="QuantityOfSeats" type="text" class="form-control" id="number" />
                     <span asp-validation-for="QuantityOfSeats" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group">
                 <label asp-for="Date" class="col-md-2 control-label"></label>
                 <div class="col-md-12">
-                    <input asp-for="Date" type="date" class="form-control"  />
+                    <input asp-for="Date" type="date" class="form-control" />
                     <span asp-validation-for="Date" class="text-danger"></span>
                 </div>
             </div>
@@ -46,6 +46,9 @@
                     <span asp-validation-for="PieceId" class="text-danger"></span>
                 </div>
             </div>
+            <strong class="text-danger">
+                @Html.ValidationSummary(true)
+            </strong>
             <div class="form-group">
                 <div class="col-md-12">
                     <div class="container container-elements-center">

@@ -43,6 +43,8 @@ namespace SaleTheaterTickets.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(TicketViewModel model)
         {
+            ICollection<Piece> pieces;
+
             try
             {
                 if (ModelState.IsValid)
@@ -52,14 +54,25 @@ namespace SaleTheaterTickets.Controllers
                         Console.WriteLine("Ingresso já existe!");
                     }
 
-                    model.Seats = RegistrationSeats(model.QuantityOfSeats);
-
                     var _model = _mapper.Map<Ticket>(model);
+                    
+
+                    var count = _ticketRepository.FindAllByPiece(_model);
+
+                    if(count > 0)
+                    {
+                        ModelState.AddModelError("", "Esse ingresso já existe para essa sala. Verique peça, data e hora.");
+                        pieces = _pieceRepository.FindAll();
+                        model.Pieces = pieces;
+                        return View(model);
+                    }
+
                     _ticketRepository.Insert(_model);
+                    model.Seats = RegistrationSeats(model.QuantityOfSeats);
 
                     return RedirectToAction("Index");
                 }
-                var pieces = _pieceRepository.FindAll();
+                pieces = _pieceRepository.FindAll();
 
                 model.Pieces = pieces;
 
