@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "slIayxRkO1Y97dDxKNDBC/RSAxcDCF6sfxVNuCXi98eIGfV2nbKG5z9Hm0CK4juoJ1teL8b8m3yOySWcqy6/Dg==",
+  "dgSpecHash": "YxYFn+Zk5dJiQBh3hEj8oREBUGCKXIbO0joWqxZoDrH2fsb1EdeM++S28STS8pxYwtzy8uJ/csxk5jQQgKqW0Q==",
   "success": true,
   "projectFilePath": "C:\\projetos\\SaleTheaterTickets\\SaleTheaterTickets\\SaleTheaterTickets\\SaleTheaterTickets.csproj",
   "expectedPackageFiles": [
@@ -8,7 +8,10 @@
     "C:\\Users\\Karol\\.nuget\\packages\\fluentvalidation\\9.5.1\\fluentvalidation.9.5.1.nupkg.sha512",
     "C:\\Users\\Karol\\.nuget\\packages\\fluentvalidation.aspnetcore\\9.5.1\\fluentvalidation.aspnetcore.9.5.1.nupkg.sha512",
     "C:\\Users\\Karol\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\9.5.1\\fluentvalidation.dependencyinjectionextensions.9.5.1.nupkg.sha512",
+    "C:\\Users\\Karol\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.11\\microsoft.aspnetcore.cryptography.internal.3.1.11.nupkg.sha512",
+    "C:\\Users\\Karol\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\3.1.11\\microsoft.aspnetcore.cryptography.keyderivation.3.1.11.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
+    "C:\\Users\\Karol\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\3.1.11\\microsoft.aspnetcore.identity.entityframeworkcore.3.1.11.nupkg.sha512",
     "C:\\Users\\Karol\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.extensions\\3.1.11\\microsoft.aspnetcore.mvc.razor.extensions.3.1.11.nupkg.sha512",
     "C:\\Users\\Karol\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.runtimecompilation\\3.1.11\\microsoft.aspnetcore.mvc.razor.runtimecompilation.3.1.11.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore.razor\\2.2.0\\microsoft.aspnetcore.razor.2.2.0.nupkg.sha512",
@@ -37,6 +40,8 @@
     "C:\\Users\\Karol\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\3.1.11\\microsoft.extensions.dependencyinjection.3.1.11.nupkg.sha512",
     "C:\\Users\\Karol\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\3.1.11\\microsoft.extensions.dependencyinjection.abstractions.3.1.11.nupkg.sha512",
     "C:\\Users\\Karol\\.nuget\\packages\\microsoft.extensions.dependencymodel\\3.1.6\\microsoft.extensions.dependencymodel.3.1.6.nupkg.sha512",
+    "C:\\Users\\Karol\\.nuget\\packages\\microsoft.extensions.identity.core\\3.1.11\\microsoft.extensions.identity.core.3.1.11.nupkg.sha512",
+    "C:\\Users\\Karol\\.nuget\\packages\\microsoft.extensions.identity.stores\\3.1.11\\microsoft.extensions.identity.stores.3.1.11.nupkg.sha512",
     "C:\\Users\\Karol\\.nuget\\packages\\microsoft.extensions.logging\\3.1.11\\microsoft.extensions.logging.3.1.11.nupkg.sha512",
     "C:\\Users\\Karol\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\3.1.11\\microsoft.extensions.logging.abstractions.3.1.11.nupkg.sha512",
     "C:\\Users\\Karol\\.nuget\\packages\\microsoft.extensions.options\\3.1.11\\microsoft.extensions.options.3.1.11.nupkg.sha512",

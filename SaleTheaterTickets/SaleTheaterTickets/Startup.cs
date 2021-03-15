@@ -2,6 +2,7 @@ using AutoMapper;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,6 +27,11 @@ namespace SaleTheaterTickets
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services
+                .AddIdentity<IdentityUser, IdentityRole>() //Adiciona o sistema Identiy padrão para os tipos de perfis especificados
+                .AddEntityFrameworkStores<SaleTheaterTicketsContext>() //Adiciona uma implementação do EntityFramework que armazena as informações de identidade
+                .AddDefaultTokenProviders(); //Inclui os tokens para troca de senha e envio de e-mail
 
             var config = new MapperConfiguration(cfg =>
             {
@@ -74,6 +80,7 @@ namespace SaleTheaterTickets
 
             app.UseRouting();
 
+            app.UseAuthentication(); //Midleware que adiciona a autenticação ao pipeline da solicitação
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

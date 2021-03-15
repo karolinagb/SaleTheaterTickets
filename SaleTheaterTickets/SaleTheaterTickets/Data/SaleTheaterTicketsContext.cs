@@ -1,15 +1,18 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using SaleTheaterTickets.Models;
 using System.Linq;
 
 namespace SaleTheaterTickets.Data
 {
-    public class SaleTheaterTicketsContext : DbContext
+    public class SaleTheaterTicketsContext : IdentityDbContext<IdentityUser> //IdentityUser é a classe que gerencia um usuário
     {
         public SaleTheaterTicketsContext(DbContextOptions<SaleTheaterTicketsContext> options) : base(options)
         {
 
         }
+
         public DbSet<Piece> Pieces { get; set; }
         public DbSet<Ticket> Tickets { get; set; }
         public DbSet<GeneratedTicket> GeneratedTickets { get; set; }
