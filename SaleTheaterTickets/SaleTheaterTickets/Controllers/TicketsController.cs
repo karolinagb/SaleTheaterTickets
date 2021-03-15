@@ -49,19 +49,19 @@ namespace SaleTheaterTickets.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    if(_ticketRepository.GetById(model.Id) != null)
+                    if (_ticketRepository.GetById(model.Id) != null)
                     {
                         Console.WriteLine("Ingresso já existe!");
                     }
 
                     var _model = _mapper.Map<Ticket>(model);
-                    
 
-                    var count = _ticketRepository.FindAllByPiece(_model);
 
-                    if(count > 0)
+                    var count = _ticketRepository.BeUnique(_model);
+
+                    if (count > 0)
                     {
-                        ModelState.AddModelError("", "Esse ingresso já existe para essa sala. Verique peça, data e hora.");
+                        ModelState.AddModelError("", "Esse ingresso já existe para essa sala. Verique peça, data e hora");
                         pieces = _pieceRepository.FindAll();
                         model.Pieces = pieces;
                         return View(model);
@@ -78,7 +78,7 @@ namespace SaleTheaterTickets.Controllers
 
                 return View(model);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
                 return View(model);
@@ -87,7 +87,7 @@ namespace SaleTheaterTickets.Controllers
 
         public ActionResult Edit(int? id)
         {
-            if(id == null)
+            if (id == null)
             {
                 Console.WriteLine("Id deve ser fornecido");
                 return View("Index");
@@ -95,7 +95,7 @@ namespace SaleTheaterTickets.Controllers
 
             var model = _ticketRepository.GetById(id.Value);
 
-            if(model == null)
+            if (model == null)
             {
                 Console.WriteLine("Ingresso não encontrado");
                 return View("Index");
@@ -112,7 +112,9 @@ namespace SaleTheaterTickets.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(TicketViewModel model, int id)
         {
-            if(id != model.Id)
+            ICollection<Piece> pieces;
+
+            if (id != model.Id)
             {
                 Console.WriteLine("Id diferente!");
                 RedirectToAction("Index");
@@ -124,6 +126,16 @@ namespace SaleTheaterTickets.Controllers
                 {
                     var _model = _mapper.Map<Ticket>(model);
 
+                    var count = _ticketRepository.BeUnique(_model);
+
+                    if(count > 0)
+                    {
+                        ModelState.AddModelError("", "Esse ingresso já existe para essa sala. Verique peça, data e hora");
+                        pieces = _pieceRepository.FindAll();
+                        model.Pieces = pieces;
+                        return View(model);
+                    }
+
                     _ticketRepository.Update(_model);
                     return RedirectToAction("Index");
                 }
@@ -134,7 +146,7 @@ namespace SaleTheaterTickets.Controllers
                 }
             }
 
-            var pieces = _pieceRepository.FindAll();
+            pieces = _pieceRepository.FindAll();
             model.Pieces = pieces;
 
             return View(model);
@@ -142,22 +154,22 @@ namespace SaleTheaterTickets.Controllers
 
         public ActionResult Details(TicketViewModel model, int? id)
         {
-            if(id == null)
+            if (id == null)
             {
                 Console.WriteLine("Id não informado");
                 return RedirectToAction("Index");
             }
 
-            if(id != model.Id)
+            if (id != model.Id)
             {
                 Console.WriteLine("Id diferente");
                 return RedirectToAction("Index");
-            } 
+            }
 
             var _model = _mapper.Map<Ticket>(model);
             _model = _ticketRepository.GetById(id.Value);
 
-            if(_model == null)
+            if (_model == null)
             {
                 Console.WriteLine("Ingresso não encontrado");
                 return RedirectToAction("Index");

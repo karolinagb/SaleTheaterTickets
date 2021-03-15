@@ -47,6 +47,9 @@
                     <span asp-validation-for="PieceId" class="text-danger"></span>
                 </div>
             </div>
+            <strong class="text-danger">
+                @Html.ValidationSummary(true)
+            </strong>
             <div class="form-group">
                 <div class="col-md-12">
                     <div class="container container-elements-center">

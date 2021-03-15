@@ -45,7 +45,7 @@ namespace SaleTheaterTickets.Repositories
             _saleTheaterTicketsContext.SaveChanges();
         }
 
-        public int FindAllByPiece(Ticket model)
+        public int BeUnique(Ticket model)
         {
             return _saleTheaterTicketsContext.Tickets.Include(x => x.Piece).Where(x => x.PieceId == model.PieceId
             && x.Date == model.Date && x.Schedule == model.Schedule).Count();
