@@ -1,4 +1,5 @@
 ﻿using SaleTheaterTickets.Models;
+using System;
 using System.Collections.Generic;
 
 namespace SaleTheaterTickets.Repositories.Interfaces
@@ -11,5 +12,9 @@ namespace SaleTheaterTickets.Repositories.Interfaces
         public void Update(Ticket model);
         public void Remove(int id);
         public int BeUnique(Ticket model);
+
+        //public int BeUniqueByPiece(int pieceId);
+        //public int BeUniqueByDate(DateTime date);
+        //public int BeUniqueBySchedule(TimeSpan schedule);
     }
 }

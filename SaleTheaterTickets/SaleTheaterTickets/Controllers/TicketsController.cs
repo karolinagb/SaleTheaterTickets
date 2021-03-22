@@ -128,13 +128,15 @@ namespace SaleTheaterTickets.Controllers
 
                     var count = _ticketRepository.BeUnique(_model);
 
-                    if(count > 0)
+                    if (count > 0)
                     {
                         ModelState.AddModelError("", "Esse ingresso já existe para essa sala. Verique peça, data e hora");
                         pieces = _pieceRepository.FindAll();
                         model.Pieces = pieces;
                         return View(model);
                     }
+
+
 
                     _ticketRepository.Update(_model);
                     return RedirectToAction("Index");
