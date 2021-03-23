@@ -126,7 +126,6 @@ namespace SaleTheaterTickets.Controllers
                     }
                 }
 
-                ModelState.AddModelError("", "Erro no registro: ");
                 return View(model);
             }
             catch (Exception ex)

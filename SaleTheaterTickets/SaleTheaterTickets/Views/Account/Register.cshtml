@@ -8,7 +8,7 @@
                     <h4>Registrar usuário</h4>
                     <form asp-controller="Account" asp-action="Register" method="post" class="form-horizontal" role="form">
                         <hr />
-                        <strong class="text-danger">@Html.ValidationSummary(true)</strong>
+
                         <div class="form-group">
                             <label asp-for="Email" class="col-md-2 control-label"></label>
                             <div class="col-md-12">
@@ -30,9 +30,14 @@
                                 <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                             </div>
                         </div>
-                        <div class="form-group pull-right formPullRightButton">
+
+                        @*<strong class="text-danger">@Html.ValidationSummary(true)</strong>*@
+                        <strong class="text-danger">@Html.ValidationSummary()</strong>
+
+                        <div class="form-group pull-right">
                             <div class="col-md-offset-2 col-md-10">
-                                <input type="submit" class="btn btn-success " value="Registrar" />
+                                <input type="submit" class="btn btn-success" value="Registrar" />
+                                <a asp-action="Login" class="btn btn-primary">Login</a>
                             </div>
                         </div>
                     </form>

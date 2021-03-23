@@ -36,6 +36,18 @@ namespace SaleTheaterTickets
                 .AddEntityFrameworkStores<SaleTheaterTicketsContext>() //Adiciona uma implementação do EntityFramework que armazena as informações de identidade
                 .AddDefaultTokenProviders(); //Inclui os tokens para troca de senha e envio de e-mail
 
+            services
+                .Configure<IdentityOptions>(options =>
+            {
+                // Default Password settings.
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = true;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = true;
+                options.Password.RequiredLength = 6;
+                options.Password.RequiredUniqueChars = 0;
+            });
+
             var config = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<Piece, PieceViewModel>();
