@@ -1,0 +1,50 @@
+﻿@model SaleTheaterTickets.Models.LoginViewModel
+
+<div class="row">
+    <div class="col-md-3">
+        <img src="~/images/login1.jpg" alt="Fazer login" />
+    </div>
+    <div class="col-md-8">
+        <h4>Faça Login</h4>
+        <form asp-controller="Account" asp-action="Login" method="post" class="form-horizontal" role="form">
+            <hr />
+
+            <input type="hidden" asp-for="ReturnUrl" />
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Email" class="control-label"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Password" class="control-label"></label>
+                        <input asp-for="Password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <strong class="text-danger">@Html.ValidationSummary()</strong>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group center">
+                        <div class="col-md-offset-2">
+                            <input type="submit" class="btn btn-success" value="Log in" />
+                            <a asp-action="Register" class="btn btn-primary">Registrar</a>
+                        </div>
+                        <p>
+                            <div>
+                                <a asp-area="" asp-controller="Home" asp-action="Index">Não é Administrador? Voltar a página inicial</a>
+                            </div>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
