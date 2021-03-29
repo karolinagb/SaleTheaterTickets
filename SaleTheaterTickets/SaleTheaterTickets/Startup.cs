@@ -75,6 +75,10 @@ namespace SaleTheaterTickets
 
             //Adicionando o Fluent Validation ao pipeline
             services.AddMvc().AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<Startup>());
+
+            services.ConfigureApplicationCookie(x => {
+                x.LoginPath = "/Admin/Account/Login";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
