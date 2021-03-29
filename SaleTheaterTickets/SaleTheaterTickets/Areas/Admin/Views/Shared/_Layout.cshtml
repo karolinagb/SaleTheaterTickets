@@ -11,17 +11,32 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="Admin" asp-controller="Home" asp-action="Index">Admin</a>
+                @*<a class="navbar-brand" asp-area="Admin" asp-controller="" asp-action="Index">Admin</a>*@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex">
-                    <a class="nav-link text-light" asp-area="Admin" asp-controller="Admin" asp-action="Index">Página Inicial</a>
-                    <a class="nav-link text-light" asp-area="Admin" asp-controller="AdminPieces" asp-action="Index">Peças</a>
-                    <a class="nav-link text-light" asp-area="Admin" asp-controller="AdminTickets" asp-action="Index">Ingressos</a>
-                    <a class="nav-link text-light" asp-area="Admin" asp-controller="AdminGeneratedTickets" asp-action="Index">Ingressos gerados</a>
-                    <a class="nav-link text-light" asp-area="Admin" asp-controller="Account" asp-action="Register">Registro de usuários</a>
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="Admin" asp-controller="Admin" asp-action="Index">Página Inicial</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="Admin" asp-controller="AdminPieces" asp-action="Index">Peças</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="Admin" asp-controller="AdminTickets" asp-action="Index">Ingressos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="Admin" asp-controller="AdminGeneratedTickets" asp-action="Index">Ingressos gerados</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="Admin" asp-controller="Account" asp-action="Register">Registro de usuários</a>
+                        </li>
+                        <li class="nav-item">
+                            @await Html.PartialAsync("_Login") 
+                        </li>
+                    </ul>
                 </div>
             </div>
         </nav>

@@ -46,7 +46,7 @@ namespace SaleTheaterTickets.Areas.Admin.Controllers
                     var user = await _userManager.FindByNameAsync(model.Email);
 
                     //se usuário existir
-                    if(user != null)
+                    if (user != null)
                     {
                         //entra com a senha digitada
                         var result = await _signInManager.PasswordSignInAsync(user, model.Password, false, false);
@@ -57,7 +57,7 @@ namespace SaleTheaterTickets.Areas.Admin.Controllers
                             if (string.IsNullOrEmpty(model.ReturnUrl))
                             {
                                 //retorna pra home
-                                return RedirectToAction("Index", "Home");
+                                return RedirectToAction("Index", "Admin");
                             }
                             else
                             {
@@ -65,6 +65,9 @@ namespace SaleTheaterTickets.Areas.Admin.Controllers
                                 return Redirect(model.ReturnUrl);
                             }
                         }
+
+                        ModelState.AddModelError("", "Senha incorreta!");
+
                     }
                     else
                     {
@@ -91,7 +94,7 @@ namespace SaleTheaterTickets.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
-            
+
             try
             {
                 if (ModelState.IsValid)
@@ -100,7 +103,7 @@ namespace SaleTheaterTickets.Areas.Admin.Controllers
                     var user = await _userManager.FindByNameAsync(model.Email);
 
                     //se não encontrar cria
-                    if(user == null)
+                    if (user == null)
                     {
                         //recebendo userName
                         user = new IdentityUser()
@@ -142,11 +145,17 @@ namespace SaleTheaterTickets.Areas.Admin.Controllers
             }
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public async Task<ActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
-            return RedirectToAction("Login");
+            return RedirectToAction("Index", "Home", new {area = ""});
+        }
+
+        public ActionResult LoggedIn()
+        {
+            return View();
         }
     }
 }
