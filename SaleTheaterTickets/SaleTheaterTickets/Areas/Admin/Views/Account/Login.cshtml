@@ -12,19 +12,21 @@
             <input type="hidden" asp-for="ReturnUrl" />
 
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="form-group">
                         <label asp-for="Email" class="control-label"></label>
-                        <input asp-for="Email" class="form-control" />
+                        <input asp-for="Email" class="form-control col-md-5" />
                         <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="form-group">
                         <label asp-for="Password" class="control-label"></label>
-                        <input asp-for="Password" class="form-control" />
+                        <p class="form-inline">
+                            <input asp-for="Password" class="form-control col-md-5" type="password" id="password" />&nbsp;<input type="button" id="showPassword" value="Mostrar" class="btn btn-sm btn-secondary  />
+                        </p>
                         <span asp-validation-for="Password" class="text-danger"></span>
                     </div>
                 </div>
@@ -48,3 +50,8 @@
         </form>
     </div>
 </div>
+
+@section Scripts{
+    <script src="~/js/Views/Account/Login.js">
+    </script>
+}

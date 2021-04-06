@@ -73,3 +73,10 @@ body {
 .container-elements-center{
     text-align: center;
 }
+
+.button{
+    background: #eee;
+    border: 1px solid #999;
+    cursor: pointer;
+    padding: 6px !important;
+}
