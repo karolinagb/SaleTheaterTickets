@@ -48,6 +48,11 @@ namespace SaleTheaterTickets.Areas.Admin.Controllers
                     //se usuário existir
                     if (user != null)
                     {
+                        if (model.Password != user.PasswordHash)
+                        {
+                            ModelState.AddModelError("", "Senha incorreta!");
+                        }
+
                         //entra com a senha digitada
                         var result = await _signInManager.PasswordSignInAsync(user, model.Password, false, false);
 
@@ -66,7 +71,7 @@ namespace SaleTheaterTickets.Areas.Admin.Controllers
                             }
                         }
 
-                        ModelState.AddModelError("", "Senha incorreta!");
+                        //ModelState.AddModelError("", "Senha incorreta!");
 
                     }
                     else
