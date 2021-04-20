@@ -80,3 +80,21 @@ body {
     cursor: pointer;
     padding: 6px !important;
 }
+
+.h1Piece {
+    color: #a71d2a !important;
+    margin: auto;
+    font-weight: bold;
+}
+
+.bodyCustomer{
+    background-color: black;
+}
+
+.navCustomer {
+    background-color: #212529;
+}
+
+.carouselCustomer{
+    bottom: 125px;
+}

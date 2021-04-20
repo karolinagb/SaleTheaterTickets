@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ReflectionIT.Mvc.Paging;
 using SaleTheaterTickets.Data;
 using SaleTheaterTickets.Models;
 using SaleTheaterTickets.Repositories;
@@ -30,6 +31,7 @@ namespace SaleTheaterTickets
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
 
             services
                 .AddIdentity<IdentityUser, IdentityRole>() //Adiciona o sistema Identiy padrão para os tipos de perfis especificados
@@ -78,6 +80,13 @@ namespace SaleTheaterTickets
 
             services.ConfigureApplicationCookie(x => {
                 x.LoginPath = "/Admin/Account/Login";
+            });
+
+            //Adicionando serviço de paginação e filtro ao projeto
+            services.AddPaging(options =>
+            {
+                options.ViewName = "Bootstrap4";
+                options.PageParameterName = "pageindex";
             });
         }
 

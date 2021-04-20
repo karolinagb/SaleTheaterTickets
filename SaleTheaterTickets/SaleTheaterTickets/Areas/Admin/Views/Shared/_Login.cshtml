@@ -5,6 +5,6 @@
 @if (SignInManager.IsSignedIn(User))
 {
     <form asp-area="Admin" asp-controller="Account" asp-action="Logout" id="logoutForm">
-        <a href="javascript:document.getElementById('logoutForm').submit()" style="color:white">Log off</a>
+        <a class="nav-link text-light" href="javascript:document.getElementById('logoutForm').submit()" style="color:white">LogOff</a>
     </form>
 }

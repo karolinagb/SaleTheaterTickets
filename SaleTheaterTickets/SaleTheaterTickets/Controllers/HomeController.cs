@@ -6,21 +6,25 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SaleTheaterTickets.Models;
+using SaleTheaterTickets.Repositories.Interfaces;
 
 namespace SaleTheaterTickets.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ITicketRepository _ticketRepository;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ITicketRepository ticketRepository)
         {
             _logger = logger;
+            _ticketRepository = ticketRepository;
         }
 
         public IActionResult Index()
         {
-            return View();
+            List<Ticket> tickets = _ticketRepository.FindAll();
+            return View(tickets);
         }
 
         public IActionResult Privacy()
