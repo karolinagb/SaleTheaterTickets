@@ -21,6 +21,11 @@ namespace SaleTheaterTickets.Repositories
             return _saleTheaterTicketsContext.GeneratedTickets.ToList();
         }
 
+        public GeneratedTicket FindAllByTicketId(int ticketId, int seat)
+        {
+            return _saleTheaterTicketsContext.GeneratedTickets.Where(x => x.TicketId == ticketId).Where(x => x.Seat == seat).FirstOrDefault();
+        }
+
         public GeneratedTicket GetById(int id)
         {
             return _saleTheaterTicketsContext.GeneratedTickets.Include(x => x.Ticket).FirstOrDefault(x => x.Id == id);

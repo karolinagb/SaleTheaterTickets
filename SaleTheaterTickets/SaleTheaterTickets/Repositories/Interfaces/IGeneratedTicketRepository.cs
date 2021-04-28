@@ -8,5 +8,6 @@ namespace SaleTheaterTickets.Repositories.Interfaces
         public List<GeneratedTicket> FindAll();
         public void Insert(GeneratedTicket model);
         public GeneratedTicket GetById(int id);
+        public GeneratedTicket FindAllByTicketId(int ticketId, int seat);
     }
 }

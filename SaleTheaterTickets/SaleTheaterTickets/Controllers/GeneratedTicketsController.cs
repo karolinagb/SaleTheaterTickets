@@ -5,18 +5,17 @@ using SaleTheaterTickets.Models;
 using SaleTheaterTickets.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SaleTheaterTickets.Controllers
 {
-    [Area("Admin")]
-    [Authorize(Roles = "Admin")]
-    public class AdminGeneratedTicketsController : Controller
+    public class GeneratedTicketsController : Controller
     {
         private readonly IGeneratedTicketRepository _generatedTicketRepository;
         private readonly ITicketRepository _ticketRepository;
         private readonly IMapper _mapper;
 
-        public AdminGeneratedTicketsController(IGeneratedTicketRepository generatedTicketRepository, ITicketRepository ticketRepository, IMapper mapper)
+        public GeneratedTicketsController(IGeneratedTicketRepository generatedTicketRepository, ITicketRepository ticketRepository, IMapper mapper)
         {
             _generatedTicketRepository = generatedTicketRepository;
             _ticketRepository = ticketRepository;
@@ -36,7 +35,24 @@ namespace SaleTheaterTickets.Controllers
         {
             Ticket ticket = _ticketRepository.GetById(id.Value);
 
+
             var _ticket = _mapper.Map<TicketViewModel>(ticket);
+
+            List<int> avaibleSeats = new List<int>();
+
+
+
+            for (var count = 1; count <= _ticket.QuantityOfSeats; count++)
+            {
+                GeneratedTicket salesByTicketId = _generatedTicketRepository.FindAllByTicketId(ticket.Id, count);
+
+                if(salesByTicketId == null)
+                {
+                    avaibleSeats.Add(count);
+                }
+            }
+
+            ViewBag.AvaibleSeats = avaibleSeats;
 
             GeneratedTicketViewModel model = new GeneratedTicketViewModel();
             model.TicketId = _ticket.Id;

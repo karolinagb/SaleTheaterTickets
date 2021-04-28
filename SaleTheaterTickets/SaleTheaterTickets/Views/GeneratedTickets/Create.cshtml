@@ -6,7 +6,7 @@
 
 <form asp-controller="GeneratedTickets" asp-action="Create" class="form-horizontal">
 
-    <input type="hidden" asp-for="TicketId" value="@Model.TicketId"/>
+    <input type="hidden" asp-for="TicketId" value="@Model.TicketId" />
 
     <div class="form-group">
         <label asp-for="CustomerName" class="col-md-4 control-label"></label>
@@ -18,8 +18,15 @@
     <div class="form-group">
         <label asp-for="Seat" class="col-md-4 control-label"></label>
         <div class="col-md-5">
-            <input asp-for="Seat" class="form-control" />
-            <span asp-validation-for="Seat" class="text-danger"></span>
+            @*<input asp-for="Seat" class="form-control" />
+                <span asp-validation-for="Seat" class="text-danger"></span>*@
+            <select asp-for="Seat" class="form-control">
+                @foreach (var seat in ViewBag.AvaibleSeats)
+                {
+                    <option value="@seat">@seat</option>
+                }
+
+            </select>
         </div>
     </div>
     <div class="form-group">

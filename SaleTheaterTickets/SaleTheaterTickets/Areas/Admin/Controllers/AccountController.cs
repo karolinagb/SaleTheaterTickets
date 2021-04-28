@@ -124,9 +124,9 @@ namespace SaleTheaterTickets.Areas.Admin.Controllers
                         {
                             //Adiciona o usuário padrão ao perfil member
                             //await _userManager.AddToRoleAsync(user, "Admin");
-                            await _signInManager.SignInAsync(user, isPersistent: false);
+                            //await _signInManager.SignInAsync(user, isPersistent: false);
 
-                            return RedirectToAction("LoggedIn");
+                            return RedirectToAction("Index", "Admin");
                         }
 
                         foreach (var error in result.Errors)
