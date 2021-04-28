@@ -12,7 +12,7 @@ namespace SaleTheaterTickets.Models.ViewModelValidators
         {
             RuleFor(x => x.Name)
                 .NotEmpty().WithMessage("Digite o nome da peça!")
-                .Length(3).WithMessage("O campo deve ter no mínimo 3 letra!");
+                .MinimumLength(3).WithMessage("O campo deve ter no mínimo 3 letra!");
         }
     }
 }
