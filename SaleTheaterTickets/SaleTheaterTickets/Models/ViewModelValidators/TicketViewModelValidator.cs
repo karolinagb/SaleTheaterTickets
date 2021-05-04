@@ -7,14 +7,14 @@ namespace SaleTheaterTickets.Models.ViewModelValidators
 {
     public class TicketViewModelValidator : AbstractValidator<TicketViewModel>
     {
-        private readonly ITicketRepository _ticketRepository;
-        private readonly IMapper _mapper;
+        //private readonly ITicketRepository _ticketRepository;
+        //private readonly IMapper _mapper;
 
-        public TicketViewModelValidator(ITicketRepository ticketRepository, IMapper mapper)
-        {
-            _ticketRepository = ticketRepository;
-            _mapper = mapper;
-        }
+        //public TicketViewModelValidator(ITicketRepository ticketRepository, IMapper mapper)
+        //{
+        //    _ticketRepository = ticketRepository;
+        //    _mapper = mapper;
+        //}
 
         public TicketViewModelValidator()
         {
@@ -59,15 +59,15 @@ namespace SaleTheaterTickets.Models.ViewModelValidators
             return false;
         }
 
-        private bool BeUnique(int id)
-        {
-            var model = _ticketRepository.GetById(id);
-            if (_ticketRepository.BeUnique(model) > 0)
-            {
-                return true;
-            }
-            return false;
-        }
+        //private bool BeUnique(int id)
+        //{
+        //    var model = _ticketRepository.GetById(id);
+        //    if (_ticketRepository.BeUnique(model) > 0)
+        //    {
+        //        return true;
+        //    }
+        //    return false;
+        //}
 
         //private bool BeUniqueByPiece(int pieceId)
         //{
