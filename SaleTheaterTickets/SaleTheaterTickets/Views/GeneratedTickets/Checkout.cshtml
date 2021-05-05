@@ -10,7 +10,7 @@
             <p>Peça : <strong>@Model.Ticket.Piece.Name</strong>
             <p>Data :  <strong>@Model.Ticket.Date.ToString("dd/MM/yyyy")</strong>
             <p>Horário : <strong>@Model.Ticket.Schedule.ToString("hh\\:mm")</strong></p>
-            <p>Forma de pagamento : <strong>@Model.FormOfPayment.ToString("")</strong></p>
+            <p>Forma de pagamento : <strong>@Html.DisplayFor(x => x.FormOfPayment)</strong></p>
             <p>Assento reservado : <strong>@Model.Seat</strong></p>
 
             @*<table class="table">

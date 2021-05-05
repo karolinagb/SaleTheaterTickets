@@ -28,7 +28,7 @@ namespace SaleTheaterTickets.Repositories
 
         public GeneratedTicket GetById(int id)
         {
-            return _saleTheaterTicketsContext.GeneratedTickets.Include(x => x.Ticket).FirstOrDefault(x => x.Id == id);
+            return _saleTheaterTicketsContext.GeneratedTickets.Include(x => x.Ticket.Piece).FirstOrDefault(x => x.Id == id);
         }
 
         public void Insert(GeneratedTicket model)

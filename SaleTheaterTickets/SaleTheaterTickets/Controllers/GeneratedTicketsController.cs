@@ -74,7 +74,7 @@ namespace SaleTheaterTickets.Controllers
 
                     model = _mapper.Map<GeneratedTicketViewModel>(_model);
 
-                    return RedirectToAction("Checkout", model.Id);
+                    return RedirectToAction("Checkout", model);
                 }
                 return View(model);
             }
@@ -85,19 +85,24 @@ namespace SaleTheaterTickets.Controllers
             }
         }
 
-        public ActionResult Checkout(int? id)
+        public ActionResult Checkout(GeneratedTicketViewModel model)
         {
-            if (id == null)
-            {
-                Console.WriteLine("Id inválido");
-            }
-
-            var model = _generatedTicketRepository.GetById(id.Value);
 
             if (model == null)
             {
+                Console.WriteLine("Comprovante inválido");
+            }
+
+            var _model = _mapper.Map<GeneratedTicket>(model);
+
+            _model = _generatedTicketRepository.GetById(model.Id);
+
+            if (_model == null)
+            {
                 Console.WriteLine("Comprovante não encontrado");
             }
+
+            model = _mapper.Map<GeneratedTicketViewModel>(_model);
 
             return View("~/Views/GeneratedTickets/Checkout.cshtml", model);
         }
