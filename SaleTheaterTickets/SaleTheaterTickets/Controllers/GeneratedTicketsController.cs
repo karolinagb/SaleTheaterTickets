@@ -31,9 +31,9 @@ namespace SaleTheaterTickets.Controllers
             return View(_model);
         }
 
-        public IActionResult Create(int? id)
+        public IActionResult Create(int? ticketId)
         {
-            Ticket ticket = _ticketRepository.GetById(id.Value);
+            Ticket ticket = _ticketRepository.GetById(ticketId.Value);
 
 
             var _ticket = _mapper.Map<TicketViewModel>(ticket);
