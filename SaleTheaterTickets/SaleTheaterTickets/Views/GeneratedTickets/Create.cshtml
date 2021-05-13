@@ -12,14 +12,19 @@
         <label asp-for="CustomerName" class="col-md-4 control-label"></label>
         <div class="col-md-5">
             <input asp-for="CustomerName" class="form-control" />
-            @*<span asp-validation-for="CustomerName" class="text-danger"></span>*@
+            <span asp-validation-for="CustomerName" class="text-danger"></span>*
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="BirthDate" class="col-md-4 control-label"></label>
+        <div class="col-md-5">
+            <input asp-for="BirthDate" type="date" class="form-control" />
+            <span asp-validation-for="BirthDate" class="text-danger"></span>
         </div>
     </div>
     <div class="form-group">
         <label asp-for="Seat" class="col-md-4 control-label"></label>
         <div class="col-md-5">
-            @*<input asp-for="Seat" class="form-control" />
-                <span asp-validation-for="Seat" class="text-danger"></span>*@
             <select asp-for="Seat" class="form-control">
                 @foreach (var seat in ViewBag.AvaibleSeats)
                 {
@@ -35,9 +40,23 @@
             <select asp-for="FormOfPayment" asp-items="Html.GetEnumSelectList<FormOfPayment>()" class="form-control">
                 <option value="">Selecione</option>
             </select>
-            @*<span asp-validation-for="FormOfPayment" class="text-danger"></span>*@
+            <span asp-validation-for="FormOfPayment" class="text-danger"></span>
         </div>
     </div>
+    <div class="form-group">
+        <label asp-for="NeedyChild" class="col-md-4 control-label"></label>
+        <div class="col-md-5">
+            <select class="form-control" asp-for="NeedyChild">
+                <option value="">Selecione</option>
+                <option value="true">Sim</option>
+                <option value="false">Não</option>
+            </select>
+            <span asp-validation-for="NeedyChild" class="text-danger"></span>
+        </div>
+    </div>
+    @*<strong class="text-danger">
+        @Html.ValidationSummary()
+    </strong>*@
     <div class="form-group">
         <div class="btn-group col-md-5">
             <input class="btn btn-success" type="submit" value="Concluir Compra" />

@@ -46,7 +46,7 @@ namespace SaleTheaterTickets.Controllers
             {
                 GeneratedTicket salesByTicketId = _generatedTicketRepository.FindAllByTicketId(ticket.Id, count);
 
-                if(salesByTicketId == null)
+                if (salesByTicketId == null)
                 {
                     avaibleSeats.Add(count);
                 }
@@ -70,12 +70,34 @@ namespace SaleTheaterTickets.Controllers
                 {
                     var _model = _mapper.Map<GeneratedTicket>(model);
 
-                    _generatedTicketRepository.Insert(_model);
+                    if (_model.NeedyChild.ToLower() == "true")
+                    {
+                        if ((ValidQuestion(_model.NeedyChild, _model.BirthDate)) == true)
+                        {
 
-                    model = _mapper.Map<GeneratedTicketViewModel>(_model);
+                            _generatedTicketRepository.Insert(_model);
 
-                    return RedirectToAction("Checkout", model);
+                            model = _mapper.Map<GeneratedTicketViewModel>(_model);
+
+                            return RedirectToAction("Checkout", model);
+                        }
+                        else
+                        {
+                            ModelState.AddModelError("NeedyChild", "Resposta inválida: Cliente não é criança");
+                        }
+                    }
+                    else
+                    {
+                        _generatedTicketRepository.Insert(_model);
+
+                        model = _mapper.Map<GeneratedTicketViewModel>(_model);
+
+                        return RedirectToAction("Checkout", model);
+                    }
                 }
+
+                model = GenerateSeats(model);
+
                 return View(model);
             }
             catch (Exception ex)
@@ -84,7 +106,7 @@ namespace SaleTheaterTickets.Controllers
                 return View(model);
             }
         }
-
+        
         public ActionResult Checkout(GeneratedTicketViewModel model)
         {
 
@@ -105,6 +127,42 @@ namespace SaleTheaterTickets.Controllers
             model = _mapper.Map<GeneratedTicketViewModel>(_model);
 
             return View("~/Views/GeneratedTickets/Checkout.cshtml", model);
+        }
+
+        public bool ValidQuestion(string answer, DateTime birthDate)
+        {
+            int age = DateTime.Now.Year - birthDate.Year;
+            if ((answer.ToLower()) == "true")
+            {
+                if (age >= 2 && age <= 12)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private GeneratedTicketViewModel GenerateSeats(GeneratedTicketViewModel model)
+        {
+            Ticket ticket = _ticketRepository.GetById(model.TicketId.Value);
+            List<int> avaibleSeats = new List<int>();
+
+            for (var count = 1; count <= ticket.QuantityOfSeats; count++)
+            {
+                GeneratedTicket salesByTicketId = _generatedTicketRepository.FindAllByTicketId(ticket.Id, count);
+
+                if (salesByTicketId == null)
+                {
+                    avaibleSeats.Add(count);
+                }
+            }
+
+            ViewBag.AvaibleSeats = avaibleSeats;
+
+            GeneratedTicketViewModel generatedTicketViewModel = new GeneratedTicketViewModel();
+            generatedTicketViewModel.TicketId = model.TicketId;
+
+            return generatedTicketViewModel;
         }
     }
 }

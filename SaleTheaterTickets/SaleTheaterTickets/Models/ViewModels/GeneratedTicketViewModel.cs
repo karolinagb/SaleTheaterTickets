@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -11,6 +11,9 @@ namespace SaleTheaterTickets.Models
         [Display(Name = "Nome do cliente")]
         public string CustomerName { get; set; }
 
+        [Display(Name = "Data de nascimento")]
+        public DateTime BirthDate { get; set; }
+
         [Column(TypeName = "decimal(18,2)")]
         [DisplayFormat(DataFormatString = "{0:F2}")]
         [Display(Name = "Preço")]
@@ -22,6 +25,9 @@ namespace SaleTheaterTickets.Models
 
         [Display(Name = "Poltrona")]
         public int Seat { get; set; }
+
+        [Display(Name = "Criança carente da rede pública de ensino?")]
+        public string NeedyChild { get; set; }
 
         public int? TicketId { get; set; }
 

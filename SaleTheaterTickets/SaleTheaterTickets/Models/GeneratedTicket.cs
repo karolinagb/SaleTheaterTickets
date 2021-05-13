@@ -12,10 +12,12 @@ namespace SaleTheaterTickets.Models
     {
         public int Id { get; set; }
         public string CustomerName { get; set; }
+        public DateTime BirthDate { get; set; }
         public decimal Total { get; set; }
         public FormOfPayment FormOfPayment { get; set; }
         public int Seat { get; set; }
         public string Description { get; set; }
+        public string NeedyChild { get; set; }
         public int TicketId { get; set; }
         public Ticket Ticket { get; set; }
     }
