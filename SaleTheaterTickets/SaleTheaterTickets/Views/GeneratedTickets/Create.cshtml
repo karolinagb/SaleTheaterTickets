@@ -38,7 +38,7 @@
         <label asp-for="FormOfPayment" class="col-md-4 control-label"></label>
         <div class="col-md-5">
             <select asp-for="FormOfPayment" asp-items="Html.GetEnumSelectList<FormOfPayment>()" class="form-control">
-                <option value="">Selecione</option>
+                <option selected="selected" value="">Selecione</option>
             </select>
             <span asp-validation-for="FormOfPayment" class="text-danger"></span>
         </div>
