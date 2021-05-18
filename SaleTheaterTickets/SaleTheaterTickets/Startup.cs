@@ -13,6 +13,7 @@ using SaleTheaterTickets.Data;
 using SaleTheaterTickets.Models;
 using SaleTheaterTickets.Repositories;
 using SaleTheaterTickets.Repositories.Interfaces;
+using SaleTheaterTickets.Services;
 using System.Collections.Generic;
 using System.Globalization;
 
@@ -74,6 +75,9 @@ namespace SaleTheaterTickets
             services.AddTransient<IPieceRepository, PieceRepository>();
             services.AddTransient<ITicketRepository, TicketRepository>();
             services.AddTransient<IGeneratedTicketRepository, GeneratedTicketRepository>();
+
+            //serviços para regras de negócio
+            services.AddScoped<GeneratedTicketService>();
 
             //Adicionando o Fluent Validation ao pipeline
             services.AddMvc().AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<Startup>());

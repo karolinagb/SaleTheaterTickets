@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SaleTheaterTickets.Models;
 using SaleTheaterTickets.Repositories.Interfaces;
+using SaleTheaterTickets.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,12 +15,14 @@ namespace SaleTheaterTickets.Controllers
         private readonly IGeneratedTicketRepository _generatedTicketRepository;
         private readonly ITicketRepository _ticketRepository;
         private readonly IMapper _mapper;
+        private readonly GeneratedTicketService _generatedTicketService;
 
-        public GeneratedTicketsController(IGeneratedTicketRepository generatedTicketRepository, ITicketRepository ticketRepository, IMapper mapper)
+        public GeneratedTicketsController(IGeneratedTicketRepository generatedTicketRepository, ITicketRepository ticketRepository, IMapper mapper, GeneratedTicketService generatedTicketService)
         {
             _generatedTicketRepository = generatedTicketRepository;
             _ticketRepository = ticketRepository;
             _mapper = mapper;
+            _generatedTicketService = generatedTicketService;
         }
 
         public ActionResult Index()
@@ -70,11 +73,18 @@ namespace SaleTheaterTickets.Controllers
                 {
                     var _model = _mapper.Map<GeneratedTicket>(model);
 
+                    _model.Ticket = _ticketRepository.GetById(_model.TicketId);
+
+                    int age = _generatedTicketService.CalculateAge(_model.BirthDate);
+
+                    decimal discount = _generatedTicketService.CalculateDiscount(age, _model.Ticket.Price, _model.NeedyChild);
+
+                    _model.Total = _model.Ticket.Price - discount;
+
                     if (_model.NeedyChild.ToLower() == "true")
                     {
                         if ((ValidQuestion(_model.NeedyChild, _model.BirthDate)) == true)
                         {
-
                             _generatedTicketRepository.Insert(_model);
 
                             model = _mapper.Map<GeneratedTicketViewModel>(_model);

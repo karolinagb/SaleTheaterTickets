@@ -34,19 +34,5 @@ namespace SaleTheaterTickets.Models.ViewModelValidators
             }
             return false;
         }
-
-        //private static bool ValidQuestion( resposta)
-        //{
-        //    int idade = DateTime.Now.Year - date.Year;
-        //    bool _resposta = Convert.ToBoolean(resposta);
-        //    if(_resposta == true)
-        //    {
-        //        if(idade >= 2 && idade <=12)
-        //        {
-        //            return true;
-        //        }
-        //    }
-        //    return false;
-        //}
     }
 }
