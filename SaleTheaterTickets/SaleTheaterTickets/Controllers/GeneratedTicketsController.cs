@@ -1,12 +1,10 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SaleTheaterTickets.Models;
 using SaleTheaterTickets.Repositories.Interfaces;
 using SaleTheaterTickets.Services;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace SaleTheaterTickets.Controllers
 {
@@ -36,29 +34,9 @@ namespace SaleTheaterTickets.Controllers
 
         public IActionResult Create(int? ticketId)
         {
-            Ticket ticket = _ticketRepository.GetById(ticketId.Value);
-
-
-            var _ticket = _mapper.Map<TicketViewModel>(ticket);
-
-            List<int> avaibleSeats = new List<int>();
-
-
-
-            for (var count = 1; count <= _ticket.QuantityOfSeats; count++)
-            {
-                GeneratedTicket salesByTicketId = _generatedTicketRepository.FindAllByTicketId(ticket.Id, count);
-
-                if (salesByTicketId == null)
-                {
-                    avaibleSeats.Add(count);
-                }
-            }
-
-            ViewBag.AvaibleSeats = avaibleSeats;
-
-            GeneratedTicketViewModel model = new GeneratedTicketViewModel();
-            model.TicketId = _ticket.Id;
+            var dataGenerateSeats = _generatedTicketService.GenerateSeats(ticketId.Value);
+            GeneratedTicketViewModel model = dataGenerateSeats.Item1;
+            ViewBag.AvaibleSeats = dataGenerateSeats.Item2;
 
             return View(model);
         }
@@ -77,10 +55,10 @@ namespace SaleTheaterTickets.Controllers
 
                     int age = _generatedTicketService.CalculateAge(_model.BirthDate);
 
-                    var dados = _generatedTicketService.CalculateDiscount(age, _model.Ticket.Price, _model.NeedyChild);
+                    var dataCalculateDiscount = _generatedTicketService.CalculateDiscount(age, _model.Ticket.Price, _model.NeedyChild);
 
-                    _model.Total = _model.Ticket.Price - dados.Item1;
-                    _model.Description = dados.Item2;
+                    _model.Total = _model.Ticket.Price - dataCalculateDiscount.Item1;
+                    _model.Description = dataCalculateDiscount.Item2;
 
                     if (_model.NeedyChild.ToLower() == "true")
                     {
@@ -107,8 +85,10 @@ namespace SaleTheaterTickets.Controllers
                     }
                 }
 
-                model = GenerateSeats(model);
-
+                var dataGenerateSeats = _generatedTicketService.GenerateSeats(model.TicketId.Value);
+                model = dataGenerateSeats.Item1;
+                ViewBag.AvaiableSeats = dataGenerateSeats.Item2;
+                
                 return View(model);
             }
             catch (Exception ex)
@@ -153,27 +133,6 @@ namespace SaleTheaterTickets.Controllers
             return false;
         }
 
-        private GeneratedTicketViewModel GenerateSeats(GeneratedTicketViewModel model)
-        {
-            Ticket ticket = _ticketRepository.GetById(model.TicketId.Value);
-            List<int> avaibleSeats = new List<int>();
-
-            for (var count = 1; count <= ticket.QuantityOfSeats; count++)
-            {
-                GeneratedTicket salesByTicketId = _generatedTicketRepository.FindAllByTicketId(ticket.Id, count);
-
-                if (salesByTicketId == null)
-                {
-                    avaibleSeats.Add(count);
-                }
-            }
-
-            ViewBag.AvaibleSeats = avaibleSeats;
-
-            GeneratedTicketViewModel generatedTicketViewModel = new GeneratedTicketViewModel();
-            generatedTicketViewModel.TicketId = model.TicketId;
-
-            return generatedTicketViewModel;
-        }
+        
     }
 }

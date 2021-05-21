@@ -1,9 +1,21 @@
-﻿using System;
+﻿using SaleTheaterTickets.Models;
+using SaleTheaterTickets.Repositories.Interfaces;
+using System;
+using System.Collections.Generic;
 
 namespace SaleTheaterTickets.Services
 {
     public class GeneratedTicketService
     {
+        private readonly ITicketRepository _ticketRepository;
+        private readonly IGeneratedTicketRepository _generatedTicketRepository;
+
+        public GeneratedTicketService(ITicketRepository ticketRepository, IGeneratedTicketRepository generatedTicketRepository)
+        {
+            _ticketRepository = ticketRepository;
+            _generatedTicketRepository = generatedTicketRepository;
+        }
+
         public int CalculateAge(DateTime birthDate)
         {
             int age = DateTime.Now.Year - birthDate.Year;
@@ -36,6 +48,27 @@ namespace SaleTheaterTickets.Services
                 description = "Sem desconto";
                 return (discount, description);
             }   
+        }
+
+        public (GeneratedTicketViewModel, List<int>) GenerateSeats(int ticketId)
+        {
+            Ticket ticket = _ticketRepository.GetById(ticketId);
+            List<int> avaibleSeats = new List<int>();
+
+            for (var count = 1; count <= ticket.QuantityOfSeats; count++)
+            {
+                GeneratedTicket salesByTicketId = _generatedTicketRepository.FindAllByTicketId(ticket.Id, count);
+
+                if (salesByTicketId == null)
+                {
+                    avaibleSeats.Add(count);
+                }
+            }
+
+            GeneratedTicketViewModel generatedTicketViewModel = new GeneratedTicketViewModel();
+            generatedTicketViewModel.TicketId = ticketId;
+
+            return (generatedTicketViewModel, avaibleSeats);
         }
     }
 }
