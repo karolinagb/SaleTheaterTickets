@@ -1,30 +1,66 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SaleTheaterTickets.Models;
 using SaleTheaterTickets.Repositories.Interfaces;
+using SaleTheaterTickets.Services;
+using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace SaleTheaterTickets.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IMapper _mapper;
         private readonly ITicketRepository _ticketRepository;
+        private readonly GeneratedTicketService _generatedTicketService;
 
-        public HomeController(ILogger<HomeController> logger, ITicketRepository ticketRepository)
+        public HomeController(ILogger<HomeController> logger, IMapper mapper, ITicketRepository ticketRepository, GeneratedTicketService generatedTicketService)
         {
             _logger = logger;
+            _mapper = mapper;
             _ticketRepository = ticketRepository;
+            _generatedTicketService = generatedTicketService;
         }
 
         public IActionResult Index()
         {
-            List<Ticket> tickets = _ticketRepository.FindAll();
-            return View(tickets);
+            IEnumerable<Ticket> model;
+            IEnumerable<TicketViewModel> _model;
+            model = _ticketRepository.FindAll();
+
+            _model = _mapper.Map<IEnumerable<TicketViewModel>>(model);
+
+            foreach(var ticket in _model)
+            {
+                var dataGenerateSeats = _generatedTicketService.GenerateSeats(ticket.Id);
+                ticket.QuantityAvaibleSeats = dataGenerateSeats.Item2.Count;
+            }
+
+            return View (_model);
+
+
+
+            //List<object> list = new List<object>();
+
+            //IEnumerable<Ticket> model;
+            //IEnumerable<TicketViewModel> _model;
+            //model = _ticketRepository.FindAll();
+
+            //foreach (var ticket in model)
+            //{
+            //    List<object> x = new List<object>();
+            //    int quantityAvaibleSeats = 0;
+            //    var dataGenerateSeats = _generatedTicketService.GenerateSeats(ticket.Id);
+            //    quantityAvaibleSeats = dataGenerateSeats.Item2.Count;
+            //    x.Add(ticket);
+            //    x.Add(quantityAvaibleSeats);
+            //    list.Add(x);
+            //}
+
+            //_model = _mapper.Map<IEnumerable<TicketViewModel>(list);
+            //return View(_model);
         }
 
         public IActionResult Privacy()

@@ -36,6 +36,16 @@ namespace SaleTheaterTickets.Controllers
         {
             var dataGenerateSeats = _generatedTicketService.GenerateSeats(ticketId.Value);
             GeneratedTicketViewModel model = dataGenerateSeats.Item1;
+            
+
+            if(dataGenerateSeats.Item2.Count == 0)
+            {
+                TempData["Message"] = "Peça não há mais assentos disponíveis";
+                TempData["ColorMessage"] = "danger";
+
+                return RedirectToAction("Index", "Home");
+            }
+
             ViewBag.AvaibleSeats = dataGenerateSeats.Item2;
 
             return View(model);
@@ -117,7 +127,10 @@ namespace SaleTheaterTickets.Controllers
 
             model = _mapper.Map<GeneratedTicketViewModel>(_model);
 
-            return View("~/Views/GeneratedTickets/Checkout.cshtml", model);
+            TempData["Message"] = "Compra realizada com sucesso! :)";
+            TempData["ColorMessage"] = "success";
+
+            return View(model);
         }
 
         public bool ValidQuestion(string answer, DateTime birthDate)

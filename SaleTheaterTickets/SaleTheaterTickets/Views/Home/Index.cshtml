@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Ticket>
+﻿@model IEnumerable<TicketViewModel>
 
 <body class="bodyCustomer">
 
@@ -33,7 +33,17 @@
                                                 <li class="text-dark">@ticket.Date.ToString("dd/MM/yyyy")</li>
                                                 <li class="text-dark">@ticket.Schedule.ToString("hh\\:mm")</li>
                                             </ul>
-                                            <a asp-controller="GeneratedTickets" asp-action="Create" asp-route-ticketId="@ticket.Id" class="btn btn-lg btn-block btn-success">Comprar</a>
+                                            @if (ticket.QuantityAvaibleSeats > 0)
+                                            {
+                                                <a asp-controller="GeneratedTickets" asp-action="Create" asp-route-ticketId="@ticket.Id" class="btn btn-lg btn-block btn-success">Comprar</a>
+                                            }
+                                            else
+                                            {
+                                                <div class="alert alert-danger" role="alert">
+                                                    Assentos esgotados
+                                                </div>
+                                            }
+
                                         </div>
                                     </div>
                                 </div>
