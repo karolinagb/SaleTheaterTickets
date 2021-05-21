@@ -13,24 +13,14 @@
             <p>Forma de pagamento : <strong>@Html.DisplayFor(x => x.FormOfPayment)</strong></p>
             <p>Assento reservado : <strong>@Model.Seat</strong></p>
 
-            @*<table class="table">
-            <tr>
-                <th></th>
-                <th>Quantidade</th>
-                <th>Lanche</th>
-                <th>Preço</th>
-            </tr>
-            @foreach (var item in Model.OrderDetails)
-            {
-                <tr>
-                    <td><img src="~/img/snacks/@item.Snack.ImgUrl" width="40" height="40" /></td>
-                    <td>@item.Quantity</td>
-                    <td>@item.Snack.Name</td>
-                    <td>@item.Snack.Price</td>
-                </tr>
-            }
-        </table>*@
             <h4>Valor Total: <strong>@*@((ViewBag.OrderTotal).ToString("C2")*@ @Model.Total.ToString("C2")</strong></h4>
+            <div class="alert alert-success" role="alert">
+                <h4 class="alert-heading">Divirta-se!!</h4>
+                <p>Obrigado por comprar no Teatro Estrela Show</p>
+                <hr>
+                <p class="mb-0">@Model.Description</p>
+            </div>
+
         </div>
     </div>
 </div>

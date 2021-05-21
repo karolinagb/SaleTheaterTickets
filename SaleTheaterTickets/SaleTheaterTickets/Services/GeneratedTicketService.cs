@@ -11,24 +11,30 @@ namespace SaleTheaterTickets.Services
             return age;
         }
 
-        public decimal CalculateDiscount(int age, decimal priceTicket, string answer)
+        public (decimal, string) CalculateDiscount(int age, decimal priceTicket, string answer)
         {
             decimal discount;
+            string description;
             
             if(answer.ToLower() == "false" && (age >= 2 && age <= 12 || age >= 60))
             {
                 discount = priceTicket/2;
-                return discount;
+                description = "Você recebeu desconto de 50% no valor do ingresso!\r\n" +
+                    "Regra desconto 50%: Crianças de 2 a 12 anos e idosos a partir de 60 anos.";
+                return (discount, description);
             }
             else if(answer.ToLower() == "true")
             {
                 discount = priceTicket;
-                return discount;
+                description = "Você recebeu desconto de 100% no valor do ingresso!\r\n" +
+                    "Regra desconto 100%: Crianças da rede pública de ensino.";
+                return (discount, description);
             }
             else
             {
                 discount = 0;
-                return discount;
+                description = "Sem desconto";
+                return (discount, description);
             }   
         }
     }

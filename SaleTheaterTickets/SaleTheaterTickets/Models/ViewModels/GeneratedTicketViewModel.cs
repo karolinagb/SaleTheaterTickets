@@ -32,5 +32,8 @@ namespace SaleTheaterTickets.Models
         public int? TicketId { get; set; }
 
         public Ticket Ticket { get; set; }
+
+        [Display(Name = "Descrição")]
+        public string Description { get; set; }
     }
 }

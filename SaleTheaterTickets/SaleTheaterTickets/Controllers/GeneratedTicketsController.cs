@@ -77,9 +77,10 @@ namespace SaleTheaterTickets.Controllers
 
                     int age = _generatedTicketService.CalculateAge(_model.BirthDate);
 
-                    decimal discount = _generatedTicketService.CalculateDiscount(age, _model.Ticket.Price, _model.NeedyChild);
+                    var dados = _generatedTicketService.CalculateDiscount(age, _model.Ticket.Price, _model.NeedyChild);
 
-                    _model.Total = _model.Ticket.Price - discount;
+                    _model.Total = _model.Ticket.Price - dados.Item1;
+                    _model.Description = dados.Item2;
 
                     if (_model.NeedyChild.ToLower() == "true")
                     {
