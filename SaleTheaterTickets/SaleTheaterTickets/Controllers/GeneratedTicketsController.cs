@@ -1,10 +1,16 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
+using Microsoft.EntityFrameworkCore;
+using ReflectionIT.Mvc.Paging;
+using SaleTheaterTickets.Data;
 using SaleTheaterTickets.Models;
 using SaleTheaterTickets.Repositories.Interfaces;
 using SaleTheaterTickets.Services;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace SaleTheaterTickets.Controllers
 {
@@ -13,23 +19,42 @@ namespace SaleTheaterTickets.Controllers
         private readonly IGeneratedTicketRepository _generatedTicketRepository;
         private readonly ITicketRepository _ticketRepository;
         private readonly IMapper _mapper;
+        private readonly SaleTheaterTicketsContext _saleTheaterTicketsContext;
         private readonly GeneratedTicketService _generatedTicketService;
 
-        public GeneratedTicketsController(IGeneratedTicketRepository generatedTicketRepository, ITicketRepository ticketRepository, IMapper mapper, GeneratedTicketService generatedTicketService)
+        public GeneratedTicketsController(IGeneratedTicketRepository generatedTicketRepository, ITicketRepository ticketRepository, IMapper mapper, SaleTheaterTicketsContext saleTheaterTicketsContext, GeneratedTicketService generatedTicketService)
         {
             _generatedTicketRepository = generatedTicketRepository;
             _ticketRepository = ticketRepository;
             _mapper = mapper;
+            _saleTheaterTicketsContext = saleTheaterTicketsContext;
             _generatedTicketService = generatedTicketService;
         }
 
-        public ActionResult Index()
+        //public ActionResult Index()
+        //{
+        //    IEnumerable<GeneratedTicket> model;
+        //    IEnumerable<GeneratedTicketViewModel> _model;
+        //    model = _generatedTicketRepository.FindAll();
+        //    _model = _mapper.Map<IEnumerable<GeneratedTicketViewModel>>(model);
+        //    return View(_model);
+        //}
+
+        //Implementando a paginação
+        public async Task<ActionResult> Index(string filter, int pageindex = 1, string sort = "CustomerName")
         {
-            IEnumerable<GeneratedTicket> model;
-            IEnumerable<GeneratedTicketViewModel> _model;
-            model = _generatedTicketRepository.FindAll();
-            _model = _mapper.Map<IEnumerable<GeneratedTicketViewModel>>(model);
-            return View(_model);
+            var result = _saleTheaterTicketsContext.GeneratedTickets.AsNoTracking().AsQueryable();
+
+            if(!string.IsNullOrEmpty(filter))
+            {
+                result = result.Where(x => x.CustomerName.Contains(filter));
+            }
+
+            var model = await PagingList.CreateAsync(result, 5, pageindex, sort, "CustomeName");
+
+            model.RouteValue = new RouteValueDictionary { { "filter", filter } };
+
+            return View(model);
         }
 
         public IActionResult Create(int? ticketId)
@@ -61,7 +86,7 @@ namespace SaleTheaterTickets.Controllers
                 {
                     var _model = _mapper.Map<GeneratedTicket>(model);
 
-                    _model.Ticket = _ticketRepository.GetById(_model.TicketId);
+                    _model.Ticket = _ticketRepository.GetById(_model.TicketId.Value);
 
                     int age = _generatedTicketService.CalculateAge(_model.BirthDate);
 

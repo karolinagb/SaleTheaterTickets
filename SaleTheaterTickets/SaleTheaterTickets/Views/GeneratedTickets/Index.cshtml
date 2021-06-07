@@ -1,0 +1,94 @@
+﻿@model ReflectionIT.Mvc.Paging.PagingList<SaleTheaterTickets.Models.GeneratedTicket>
+
+@{
+    ViewData["Title"] = "Ingressos vendidos";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form method="get" class="form-inline">
+    <input name="filter" class="form-control" placeholder="filtro" value="@Model.RouteValue["Filter"]" />
+    <button type="submit" class="btn btn-info">
+        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+        Procurar
+    </button>
+</form>
+<br/>
+<div class="text-success ">
+    <h4>Total de vendas :@Model.Sum(model => model.Total).ToString("c")</h4>
+    <h4>Total de ingressos vendidos : @Model.TotalRecordCount</h4>
+</div>
+<br />
+<div>
+    @* Visual component para exibir o paginador*@
+    <vc:pager paging-list="@Model"></vc:pager>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @*@Html.DisplayNameFor(model => model.Name)*@
+                @Html.DisplayNameFor(model => model.CustomerName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BirthDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NeedyChild)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ticket.Piece.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Seat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Total)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FormOfPayment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BirthDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NeedyChild)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ticket.Piece.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Seat)
+                </td>
+                <td>
+                    @item.Total.ToString("c")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FormOfPayment)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    @* Visual component para exibir o paginador*@
+    <vc:pager paging-list="@Model"></vc:pager>
+</div>
