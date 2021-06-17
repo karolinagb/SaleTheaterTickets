@@ -35,7 +35,7 @@ namespace SaleTheaterTickets.Services
                     "Regra desconto 50%: Crianças de 2 a 12 anos e idosos a partir de 60 anos.";
                 return (discount, description);
             }
-            else if(answer.ToLower() == "true")
+            else if(answer.ToLower() == "true" && (age >= 2 && age <= 12))
             {
                 discount = priceTicket;
                 description = "Você recebeu desconto de 100% no valor do ingresso!\r\n" +

@@ -1,5 +1,4 @@
 ﻿using SaleTheaterTickets.Models;
-using System;
 using System.Collections.Generic;
 
 namespace SaleTheaterTickets.Repositories.Interfaces

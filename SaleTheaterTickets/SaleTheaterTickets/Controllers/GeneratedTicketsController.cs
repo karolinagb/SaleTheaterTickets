@@ -45,7 +45,7 @@ namespace SaleTheaterTickets.Controllers
         {
             var result = _saleTheaterTicketsContext.GeneratedTickets.AsNoTracking().AsQueryable();
 
-            if(!string.IsNullOrEmpty(filter))
+            if (!string.IsNullOrEmpty(filter))
             {
                 result = result.Where(x => x.CustomerName.Contains(filter));
             }
@@ -61,9 +61,9 @@ namespace SaleTheaterTickets.Controllers
         {
             var dataGenerateSeats = _generatedTicketService.GenerateSeats(ticketId.Value);
             GeneratedTicketViewModel model = dataGenerateSeats.Item1;
-            
 
-            if(dataGenerateSeats.Item2.Count == 0)
+
+            if (dataGenerateSeats.Item2.Count == 0)
             {
                 TempData["Message"] = "Peça não há mais assentos disponíveis";
                 TempData["ColorMessage"] = "danger";
@@ -71,7 +71,7 @@ namespace SaleTheaterTickets.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            ViewBag.AvaibleSeats = dataGenerateSeats.Item2;
+            ViewBag.AvaiableSeats = dataGenerateSeats.Item2;
 
             return View(model);
         }
@@ -82,48 +82,52 @@ namespace SaleTheaterTickets.Controllers
         {
             try
             {
+                var dataGenerateSeats = _generatedTicketService.GenerateSeats(model.TicketId.Value);
+
                 if (ModelState.IsValid)
                 {
+
+
                     var _model = _mapper.Map<GeneratedTicket>(model);
 
                     _model.Ticket = _ticketRepository.GetById(_model.TicketId.Value);
 
                     int age = _generatedTicketService.CalculateAge(_model.BirthDate);
-
                     var dataCalculateDiscount = _generatedTicketService.CalculateDiscount(age, _model.Ticket.Price, _model.NeedyChild);
-
-                    _model.Total = _model.Ticket.Price - dataCalculateDiscount.Item1;
-                    _model.Description = dataCalculateDiscount.Item2;
 
                     if (_model.NeedyChild.ToLower() == "true")
                     {
                         if ((ValidQuestion(_model.NeedyChild, _model.BirthDate)) == true)
                         {
+                            _model.Total = _model.Ticket.Price - dataCalculateDiscount.Item1;
+                            _model.Description = dataCalculateDiscount.Item2;
+
                             _generatedTicketRepository.Insert(_model);
 
                             model = _mapper.Map<GeneratedTicketViewModel>(_model);
 
                             return RedirectToAction("Checkout", model);
                         }
-                        else
-                        {
-                            ModelState.AddModelError("NeedyChild", "Resposta inválida: Cliente não é criança");
-                        }
-                    }
-                    else
-                    {
-                        _generatedTicketRepository.Insert(_model);
-
+                        ModelState.AddModelError("NeedyChild", "Resposta inválida: Cliente não é criança");
                         model = _mapper.Map<GeneratedTicketViewModel>(_model);
-
-                        return RedirectToAction("Checkout", model);
+                        
+                        //model = dataGenerateSeats.Item1;
+                        ViewBag.AvaiableSeats = dataGenerateSeats.Item2;
+                        return View(model);
                     }
+                    _model.Total = _model.Ticket.Price - dataCalculateDiscount.Item1;
+                    _model.Description = dataCalculateDiscount.Item2;
+
+                    _generatedTicketRepository.Insert(_model);
+
+                    model = _mapper.Map<GeneratedTicketViewModel>(_model);
+
+                    return RedirectToAction("Checkout", model);
                 }
 
-                var dataGenerateSeats = _generatedTicketService.GenerateSeats(model.TicketId.Value);
                 model = dataGenerateSeats.Item1;
                 ViewBag.AvaiableSeats = dataGenerateSeats.Item2;
-                
+
                 return View(model);
             }
             catch (Exception ex)
@@ -132,7 +136,7 @@ namespace SaleTheaterTickets.Controllers
                 return View(model);
             }
         }
-        
+
         public ActionResult Checkout(GeneratedTicketViewModel model)
         {
 
@@ -171,6 +175,6 @@ namespace SaleTheaterTickets.Controllers
             return false;
         }
 
-        
+
     }
 }

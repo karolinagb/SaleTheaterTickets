@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 
 namespace SaleTheaterTickets.Areas.Admin.Controllers
 {
-    [Area("Admin")]
-    [Authorize(Roles = "Admin")]
+    [Authorize]
     public class AccountController : Controller
     {
         //Classe que possui os métodos para gerenciar usuário

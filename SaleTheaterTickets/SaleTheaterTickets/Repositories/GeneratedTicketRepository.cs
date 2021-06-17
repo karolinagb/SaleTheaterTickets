@@ -2,8 +2,10 @@
 using SaleTheaterTickets.Data;
 using SaleTheaterTickets.Models;
 using SaleTheaterTickets.Repositories.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace SaleTheaterTickets.Repositories
 {
@@ -36,5 +38,15 @@ namespace SaleTheaterTickets.Repositories
             _saleTheaterTicketsContext.GeneratedTickets.Add(model);
             _saleTheaterTicketsContext.SaveChanges();
         }
+
+        //public async Task<List<GeneratedTicket>> FindByDateAsync(DateTime? minDate, DateTime: maxDate)
+        //{
+        //    var result = _saleTheaterTicketsContext.GeneratedTickets;
+
+        //    if (minDate.HasValue)
+        //    {
+        //        result = result.Where(x => x.)
+        //    }
+        //}
     }
 }
