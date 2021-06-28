@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace SaleTheaterTickets.Areas.Admin.Controllers
 {
-    [Authorize]
+    [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class AccountController : Controller
     {
         //Classe que possui os métodos para gerenciar usuário
@@ -121,9 +122,9 @@ namespace SaleTheaterTickets.Areas.Admin.Controllers
 
                         if (result.Succeeded)
                         {
-                            //Adiciona o usuário padrão ao perfil member
-                            //await _userManager.AddToRoleAsync(user, "Admin");
-                            //await _signInManager.SignInAsync(user, isPersistent: false);
+                            //Adiciona o usuário padrão ao perfil Admin
+                            await _userManager.AddToRoleAsync(user, "Admin");
+                            await _signInManager.SignInAsync(user, isPersistent: false);
 
                             return RedirectToAction("Index", "Admin");
                         }
