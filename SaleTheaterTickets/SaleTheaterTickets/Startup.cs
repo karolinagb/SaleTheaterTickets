@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ReflectionIT.Mvc.Paging;
+using SaleTheaterTickets.Areas.Admin.Services;
 using SaleTheaterTickets.Data;
 using SaleTheaterTickets.Models;
 using SaleTheaterTickets.Repositories;
@@ -78,6 +79,7 @@ namespace SaleTheaterTickets
 
             //serviços para regras de negócio
             services.AddScoped<GeneratedTicketService>();
+            services.AddScoped<TicketSalesReportService>();
 
             //Adicionando o Fluent Validation ao pipeline
             services.AddMvc().AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<Startup>());

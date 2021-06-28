@@ -1,0 +1,74 @@
+﻿@model GeneratedTicketViewModel
+
+<h1>Detalhes</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-md-2">
+            @Html.DisplayNameFor(model => model.CustomerName)
+        </dt>
+        <dd class="col-md-6">
+            @Html.DisplayFor(model => model.CustomerName)
+        </dd>
+        <dt class="col-md-6">
+            @Html.DisplayNameFor(model => model.BirthDate)
+        </dt>
+        <dd class="col-md-6">
+            @Html.DisplayFor(model => model.BirthDate)
+        </dd>
+        <dt class="col-md-6">
+            @Html.DisplayNameFor(model => model.Ticket.Piece.Name)
+        </dt>
+        <dd class="col-md-6">
+            @Html.DisplayFor(model => model.Ticket.Piece.Name)
+        </dd>
+        <dt class="col-md-6">
+            @Html.DisplayNameFor(model => model.Ticket.Date)
+        </dt>
+        <dd class="col-md-6">
+            @Html.DisplayFor(model => model.Ticket.Date)
+        </dd>
+        <dt class="col-md-6">
+            @Html.DisplayNameFor(model => model.Seat)
+        </dt>
+        <dd class="col-md-6">
+            @Html.DisplayFor(model => model.Seat)
+        </dd>
+        <dt class="col-md-6">
+            @Html.DisplayNameFor(model => model.Ticket.Price)
+        </dt>
+        <dd class="col-md-6">
+            @Html.DisplayFor(model => model.Ticket.Price)
+        </dd>
+        <dt class="col-md-6">
+            @Html.DisplayNameFor(model => model.Total)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Total)
+        </dd>
+        <dt class="col-md-6">
+            @Html.DisplayNameFor(model => model.FormOfPayment)
+        </dt>
+        <dd class="col-md-6">
+            @Html.DisplayFor(model => model.FormOfPayment)
+        </dd>
+        <dt class="col-md-6">
+            @Html.DisplayNameFor(model => model.NeedyChild)
+        </dt>
+        <dd class="col-md-6">
+            @Html.DisplayFor(model => model.NeedyChild)
+        </dd>
+        <dt class="col-md-6">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="col-md-6">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-area="Admin" asp-controller="AdminSalesTicketsReport" asp-action="Index">Voltar ao relatório</a>
+    <br />
+    <a asp-area="Admin" asp-controller="Admin" asp-action="Index">Voltar a página inicial</a>
+</div>

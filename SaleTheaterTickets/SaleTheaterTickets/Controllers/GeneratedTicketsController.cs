@@ -102,6 +102,8 @@ namespace SaleTheaterTickets.Controllers
                             _model.Total = _model.Ticket.Price - dataCalculateDiscount.Item1;
                             _model.Description = dataCalculateDiscount.Item2;
 
+                            _model.CreationDate = DateTime.Now;
+
                             _generatedTicketRepository.Insert(_model);
 
                             model = _mapper.Map<GeneratedTicketViewModel>(_model);
@@ -117,6 +119,8 @@ namespace SaleTheaterTickets.Controllers
                     }
                     _model.Total = _model.Ticket.Price - dataCalculateDiscount.Item1;
                     _model.Description = dataCalculateDiscount.Item2;
+
+                    _model.CreationDate = DateTime.Now;
 
                     _generatedTicketRepository.Insert(_model);
 
@@ -160,6 +164,33 @@ namespace SaleTheaterTickets.Controllers
             TempData["ColorMessage"] = "success";
 
             return View(model);
+        }
+
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                Console.WriteLine("Id não informado");
+                return RedirectToAction("Index");
+            }
+
+            //if (id != model.Id)
+            //{
+            //    Console.WriteLine("Id diferente");
+            //    return RedirectToAction("Index");
+            //}
+
+            var model = _generatedTicketRepository.GetById(id.Value);
+
+            if (model == null)
+            {
+                Console.WriteLine("Ingresso não encontrado");
+                return RedirectToAction("Index");
+            }
+
+            var _model = _mapper.Map<GeneratedTicketViewModel>(model);
+
+            return View(_model);
         }
 
         public bool ValidQuestion(string answer, DateTime birthDate)

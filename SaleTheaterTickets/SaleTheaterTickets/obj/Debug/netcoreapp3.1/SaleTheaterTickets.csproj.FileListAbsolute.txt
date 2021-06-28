@@ -432,3 +432,6 @@ C:\projetos\SaleTheaterTickets\SaleTheaterTickets\SaleTheaterTickets\bin\Debug\n
 C:\projetos\SaleTheaterTickets\SaleTheaterTickets\SaleTheaterTickets\obj\Debug\netcoreapp3.1\Razor\Views\GeneratedTickets\Checkout.cshtml.g.cs
 C:\projetos\SaleTheaterTickets\SaleTheaterTickets\SaleTheaterTickets\obj\Debug\netcoreapp3.1\Razor\Views\GeneratedTickets\Create.cshtml.g.cs
 C:\projetos\SaleTheaterTickets\SaleTheaterTickets\SaleTheaterTickets\obj\Debug\netcoreapp3.1\Razor\Views\GeneratedTickets\Index.cshtml.g.cs
+C:\projetos\SaleTheaterTickets\SaleTheaterTickets\SaleTheaterTickets\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\AdminSalesTicketsReport\Index.cshtml.g.cs
+C:\projetos\SaleTheaterTickets\SaleTheaterTickets\SaleTheaterTickets\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\AdminSalesTicketsReport\TicketSalesReport.cshtml.g.cs
+C:\projetos\SaleTheaterTickets\SaleTheaterTickets\SaleTheaterTickets\obj\Debug\netcoreapp3.1\Razor\Views\GeneratedTickets\Details.cshtml.g.cs

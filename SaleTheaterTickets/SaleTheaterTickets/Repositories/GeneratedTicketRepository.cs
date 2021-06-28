@@ -39,14 +39,9 @@ namespace SaleTheaterTickets.Repositories
             _saleTheaterTicketsContext.SaveChanges();
         }
 
-        //public async Task<List<GeneratedTicket>> FindByDateAsync(DateTime? minDate, DateTime: maxDate)
-        //{
-        //    var result = _saleTheaterTicketsContext.GeneratedTickets;
-
-        //    if (minDate.HasValue)
-        //    {
-        //        result = result.Where(x => x.)
-        //    }
-        //}
+        public List<GeneratedTicket> FindByDateAsync(DateTime minDate, DateTime maxDate)
+        {
+            return _saleTheaterTicketsContext.GeneratedTickets.Where(x => x.CreationDate >= minDate && x.CreationDate <= maxDate).ToList();
+        }
     }
 }

@@ -33,5 +33,8 @@ namespace SaleTheaterTickets.Models
 
         [Display(Name = "Descrição")]
         public string Description { get; set; }
+
+        [Display(Name = "Data da Compra")]
+        public DateTime CreationDate { get; set; }
     }
 }
