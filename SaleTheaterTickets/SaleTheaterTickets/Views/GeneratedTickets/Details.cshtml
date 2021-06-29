@@ -3,69 +3,78 @@
 <h1>Detalhes</h1>
 
 <div>
-    <hr />
-    <dl class="row">
-        <dt class="col-md-2">
-            @Html.DisplayNameFor(model => model.CustomerName)
-        </dt>
-        <dd class="col-md-6">
-            @Html.DisplayFor(model => model.CustomerName)
-        </dd>
-        <dt class="col-md-6">
-            @Html.DisplayNameFor(model => model.BirthDate)
-        </dt>
-        <dd class="col-md-6">
-            @Html.DisplayFor(model => model.BirthDate)
-        </dd>
-        <dt class="col-md-6">
-            @Html.DisplayNameFor(model => model.Ticket.Piece.Name)
-        </dt>
-        <dd class="col-md-6">
-            @Html.DisplayFor(model => model.Ticket.Piece.Name)
-        </dd>
-        <dt class="col-md-6">
-            @Html.DisplayNameFor(model => model.Ticket.Date)
-        </dt>
-        <dd class="col-md-6">
-            @Html.DisplayFor(model => model.Ticket.Date)
-        </dd>
-        <dt class="col-md-6">
-            @Html.DisplayNameFor(model => model.Seat)
-        </dt>
-        <dd class="col-md-6">
-            @Html.DisplayFor(model => model.Seat)
-        </dd>
-        <dt class="col-md-6">
-            @Html.DisplayNameFor(model => model.Ticket.Price)
-        </dt>
-        <dd class="col-md-6">
-            @Html.DisplayFor(model => model.Ticket.Price)
-        </dd>
-        <dt class="col-md-6">
-            @Html.DisplayNameFor(model => model.Total)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Total)
-        </dd>
-        <dt class="col-md-6">
-            @Html.DisplayNameFor(model => model.FormOfPayment)
-        </dt>
-        <dd class="col-md-6">
-            @Html.DisplayFor(model => model.FormOfPayment)
-        </dd>
-        <dt class="col-md-6">
-            @Html.DisplayNameFor(model => model.NeedyChild)
-        </dt>
-        <dd class="col-md-6">
-            @Html.DisplayFor(model => model.NeedyChild)
-        </dd>
-        <dt class="col-md-6">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class="col-md-6">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-    </dl>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @*@Html.DisplayNameFor(model => model.Name)*@
+                    @Html.DisplayNameFor(model => model.CustomerName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BirthDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Ticket.Piece.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Ticket.Date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Seat)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Ticket.Price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Total)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FormOfPayment)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NeedyChild)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => model.CustomerName)
+                </td>
+                <td>
+                    @Model.BirthDate.ToString("dd/MM/yyyy")
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Ticket.Piece.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Ticket.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Seat)
+                </td>
+                <td>
+                    @Model.Ticket.Price.ToString("c")
+                </td>
+                <td>
+                    @Model.Total.ToString("c")
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.FormOfPayment)
+                </td>
+                <td>
+                    @(Model.NeedyChild == "false" ? "Não" : "Sim")
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Description)
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 <div>
     <a asp-area="Admin" asp-controller="AdminSalesTicketsReport" asp-action="Index">Voltar ao relatório</a>
