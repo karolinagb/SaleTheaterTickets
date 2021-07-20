@@ -3,7 +3,6 @@ using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,8 +14,6 @@ using SaleTheaterTickets.Models;
 using SaleTheaterTickets.Repositories;
 using SaleTheaterTickets.Repositories.Interfaces;
 using SaleTheaterTickets.Services;
-using System.Collections.Generic;
-using System.Globalization;
 
 namespace SaleTheaterTickets
 {
@@ -54,8 +51,6 @@ namespace SaleTheaterTickets
 
             var config = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<Piece, PieceViewModel>();
-                cfg.CreateMap<PieceViewModel, Piece>();
                 cfg.CreateMap<Ticket, TicketViewModel>();
                 cfg.CreateMap<TicketViewModel, Ticket>()
                     .ForSourceMember(x => x.QuantityAvaibleSeats, x => x.DoNotValidate()) //ignorando propriedade do source

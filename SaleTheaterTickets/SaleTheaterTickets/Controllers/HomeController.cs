@@ -32,10 +32,10 @@ namespace SaleTheaterTickets.Controllers
 
             _model = _mapper.Map<IEnumerable<TicketViewModel>>(model);
 
-            foreach(var ticket in _model)
+            foreach(var m in _model)
             {
-                var dataGenerateSeats = _generatedTicketService.GenerateSeats(ticket.Id);
-                ticket.QuantityAvaibleSeats = dataGenerateSeats.Item2.Count;
+                var dataGenerateSeats = _generatedTicketService.GenerateSeats(m.Id);
+                m.QuantityAvaibleSeats = dataGenerateSeats.Item2.Count;
             }
 
             return View (_model);

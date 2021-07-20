@@ -1,12 +1,8 @@
 ﻿using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace SaleTheaterTickets.Models.ViewModelValidators
 {
-    public class PieceViewModelValidator : AbstractValidator<PieceViewModel>
+    public class PieceViewModelValidator : AbstractValidator<Piece>
     {
         public PieceViewModelValidator()
         {
