@@ -39,11 +39,6 @@ namespace SaleTheaterTickets.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    if ((_pieceRepository.GetById(model.Id) != null))
-                    {
-                        ViewBag.Error = "Peça já existe!";
-                    }
-
                     _pieceRepository.Insert(model);
 
                     return RedirectToAction("Index");

@@ -11,6 +11,7 @@ using ReflectionIT.Mvc.Paging;
 using SaleTheaterTickets.Areas.Admin.Services;
 using SaleTheaterTickets.Data;
 using SaleTheaterTickets.Models;
+using SaleTheaterTickets.Models.Services;
 using SaleTheaterTickets.Repositories;
 using SaleTheaterTickets.Repositories.Interfaces;
 using SaleTheaterTickets.Services;
@@ -75,6 +76,7 @@ namespace SaleTheaterTickets
             //serviços para regras de negócio
             services.AddScoped<GeneratedTicketService>();
             services.AddScoped<TicketSalesReportService>();
+            services.AddScoped<PieceService>();
 
             //Adicionando o Fluent Validation ao pipeline
             services.AddMvc().AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<Startup>());

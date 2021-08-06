@@ -10,5 +10,6 @@ namespace SaleTheaterTickets.Repositories.Interfaces
         public List<Piece> FindAll();
         public void Update(Piece model);
         public void Remove(int id);
+        public int BeUnique(string name);
     }
 }

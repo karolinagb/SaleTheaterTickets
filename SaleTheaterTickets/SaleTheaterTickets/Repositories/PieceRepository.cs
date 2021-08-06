@@ -1,6 +1,7 @@
 ﻿using SaleTheaterTickets.Data;
 using SaleTheaterTickets.Models;
 using SaleTheaterTickets.Repositories.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -42,6 +43,11 @@ namespace SaleTheaterTickets.Repositories
             var model = _saleTheaterTicketsContext.Pieces.Find(id);
             _saleTheaterTicketsContext.Pieces.Remove(model);
             _saleTheaterTicketsContext.SaveChanges();
+        }
+
+        public int BeUnique(string name)
+        {
+            return _saleTheaterTicketsContext.Pieces.Where(x => x.Name.ToLower().Replace(" ", String.Empty) == name.ToLower().Replace(" ", String.Empty)).Count();
         }
     }
 }
