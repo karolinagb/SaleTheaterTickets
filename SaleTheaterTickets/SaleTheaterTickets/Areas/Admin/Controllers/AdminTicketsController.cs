@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SaleTheaterTickets.Models;
 using SaleTheaterTickets.Repositories.Interfaces;
+using SaleTheaterTickets.Services;
 using System;
 using System.Collections.Generic;
 
@@ -15,12 +16,14 @@ namespace SaleTheaterTickets.Controllers
         private readonly ITicketRepository _ticketRepository;
         private readonly IPieceRepository _pieceRepository;
         private readonly IMapper _mapper;
+        private readonly TicketService _ticketService;
 
-        public AdminTicketsController(ITicketRepository ticketRepository, IMapper mapper, IPieceRepository pieceRepository)
+        public AdminTicketsController(ITicketRepository ticketRepository, IPieceRepository pieceRepository, IMapper mapper, TicketService ticketService)
         {
             _ticketRepository = ticketRepository;
-            _mapper = mapper;
             _pieceRepository = pieceRepository;
+            _mapper = mapper;
+            _ticketService = ticketService;
         }
 
         public IActionResult Index()
@@ -71,7 +74,7 @@ namespace SaleTheaterTickets.Controllers
                     }
 
                     _ticketRepository.Insert(_model);
-                    model.Seats = RegistrationSeats(model.QuantityOfSeats);
+                    model.Seats = _ticketService.RegistrationSeats(model.QuantityOfSeats);
 
                     return RedirectToAction("Index");
                 }
@@ -226,19 +229,6 @@ namespace SaleTheaterTickets.Controllers
                 Console.WriteLine(ex.Message);
                 return RedirectToAction("Index");
             }
-        }
-
-        public List<int> RegistrationSeats(int quantityOfSeats)
-        {
-            List<int> Seats = new List<int>();
-            var contador = 1;
-            while (contador <= quantityOfSeats)
-            {
-                Seats.Add(contador);
-                contador++;
-            }
-
-            return Seats;
         }
     }
 }

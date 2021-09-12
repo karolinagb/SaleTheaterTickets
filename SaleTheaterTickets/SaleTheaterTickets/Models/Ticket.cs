@@ -7,8 +7,6 @@ namespace SaleTheaterTickets.Models
     public class Ticket
     {
         public int Id { get; set; }
-
-        [Column(TypeName = "decimal(18,2)")]
         public decimal Price { get; set; }
         public int QuantityOfSeats { get; set; }
         public DateTime Date { get; set; }
