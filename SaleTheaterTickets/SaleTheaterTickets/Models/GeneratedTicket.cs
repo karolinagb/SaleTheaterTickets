@@ -15,7 +15,6 @@ namespace SaleTheaterTickets.Models
 
         [DisplayFormat(DataFormatString = "{0:F2}")]
         [Display(Name = "Preço")]
-        [DataType(DataType.Currency)]
         public decimal Total { get; set; }
 
         [Display(Name = "Forma de pagamento")]
@@ -27,7 +26,7 @@ namespace SaleTheaterTickets.Models
         [Display(Name = "Criança carente da rede pública de ensino?")]
         public string NeedyChild { get; set; }
 
-        public int? TicketId { get; set; }
+        public int TicketId { get; set; }
 
         public Ticket Ticket { get; set; }
 

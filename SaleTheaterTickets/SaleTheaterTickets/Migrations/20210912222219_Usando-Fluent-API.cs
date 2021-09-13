@@ -156,7 +156,7 @@ namespace SaleTheaterTickets.Migrations
                 type: "longtext CHARACTER SET utf8mb4",
                 nullable: true,
                 oldClrType: typeof(string),
-                oldType: "VARCHAR(300)");
+                oldType: "VARCHAR(400)");
 
             migrationBuilder.AlterColumn<decimal>(
                 name: "Total",

@@ -50,14 +50,14 @@ namespace SaleTheaterTickets.Services
             }   
         }
 
-        public (GeneratedTicketViewModel, List<int>) GenerateSeats(int ticketId)
+        public List<int> GenerateSeats(int ticketId)
         {
             Ticket ticket = _ticketRepository.GetById(ticketId);
             List<int> avaibleSeats = new List<int>();
 
             for (var count = 1; count <= ticket.QuantityOfSeats; count++)
             {
-                GeneratedTicket salesByTicketId = _generatedTicketRepository.FindAllByTicketId(ticket.Id, count);
+                GeneratedTicket salesByTicketId = _generatedTicketRepository.GetByTicketId(ticket.Id, count);
 
                 if (salesByTicketId == null)
                 {
@@ -65,10 +65,7 @@ namespace SaleTheaterTickets.Services
                 }
             }
 
-            GeneratedTicketViewModel generatedTicketViewModel = new GeneratedTicketViewModel();
-            generatedTicketViewModel.TicketId = ticketId;
-
-            return (generatedTicketViewModel, avaibleSeats);
+            return avaibleSeats;
         }
     }
 }

@@ -34,33 +34,11 @@ namespace SaleTheaterTickets.Controllers
 
             foreach(var m in _model)
             {
-                var dataGenerateSeats = _generatedTicketService.GenerateSeats(m.Id);
-                m.QuantityAvaibleSeats = dataGenerateSeats.Item2.Count;
+                var avaibleSeats = _generatedTicketService.GenerateSeats(m.Id);
+                m.QuantityAvaibleSeats = avaibleSeats.Count;
             }
 
             return View (_model);
-
-
-
-            //List<object> list = new List<object>();
-
-            //IEnumerable<Ticket> model;
-            //IEnumerable<TicketViewModel> _model;
-            //model = _ticketRepository.FindAll();
-
-            //foreach (var ticket in model)
-            //{
-            //    List<object> x = new List<object>();
-            //    int quantityAvaibleSeats = 0;
-            //    var dataGenerateSeats = _generatedTicketService.GenerateSeats(ticket.Id);
-            //    quantityAvaibleSeats = dataGenerateSeats.Item2.Count;
-            //    x.Add(ticket);
-            //    x.Add(quantityAvaibleSeats);
-            //    list.Add(x);
-            //}
-
-            //_model = _mapper.Map<IEnumerable<TicketViewModel>(list);
-            //return View(_model);
         }
 
         public IActionResult Privacy()

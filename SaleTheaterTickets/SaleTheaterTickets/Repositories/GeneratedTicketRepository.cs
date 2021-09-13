@@ -5,7 +5,6 @@ using SaleTheaterTickets.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace SaleTheaterTickets.Repositories
 {
@@ -23,7 +22,7 @@ namespace SaleTheaterTickets.Repositories
             return _saleTheaterTicketsContext.GeneratedTickets.ToList();
         }
 
-        public GeneratedTicket FindAllByTicketId(int ticketId, int seat)
+        public GeneratedTicket GetByTicketId(int ticketId, int seat)
         {
             return _saleTheaterTicketsContext.GeneratedTickets.Where(x => x.TicketId == ticketId).Where(x => x.Seat == seat).FirstOrDefault();
         }
@@ -42,6 +41,11 @@ namespace SaleTheaterTickets.Repositories
         public List<GeneratedTicket> FindByDateAsync(DateTime minDate, DateTime maxDate)
         {
             return _saleTheaterTicketsContext.GeneratedTickets.Where(x => x.CreationDate >= minDate && x.CreationDate <= maxDate).ToList();
+        }
+
+        public IQueryable<GeneratedTicket> FindAllToPagination()
+        {
+            return _saleTheaterTicketsContext.GeneratedTickets.AsNoTracking().AsQueryable();
         }
     }
 }

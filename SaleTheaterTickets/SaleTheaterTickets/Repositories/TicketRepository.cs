@@ -50,20 +50,5 @@ namespace SaleTheaterTickets.Repositories
             return _saleTheaterTicketsContext.Tickets.Include(x => x.Piece).Where( x => x.Id != model.Id && x.PieceId == model.PieceId
             && x.Date == model.Date && x.Schedule == model.Schedule).Count();
         }
-
-        //public int BeUniqueByPiece(int pieceId)
-        //{
-        //    return _saleTheaterTicketsContext.Tickets.Include(x => x.Piece).Where(x => x.PieceId == pieceId).Count();
-        //}
-
-        //public int BeUniqueByDate(DateTime date)
-        //{
-        //    return _saleTheaterTicketsContext.Tickets.Include(x => x.Piece).Where(x => x.Date == date).Count();
-        //}
-
-        //public int BeUniqueBySchedule(TimeSpan schedule)
-        //{
-        //    return _saleTheaterTicketsContext.Tickets.Include(x => x.Piece).Where(x => x.Schedule == schedule).Count();
-        //}
     }
 }

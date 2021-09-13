@@ -43,7 +43,7 @@ namespace SaleTheaterTickets.Controllers
         //Implementando a paginação
         public async Task<ActionResult> Index(string filter, int pageindex = 1, string sort = "CustomerName")
         {
-            var result = _saleTheaterTicketsContext.GeneratedTickets.AsNoTracking().AsQueryable();
+            var result = _generatedTicketRepository.FindAllToPagination().AsNoTracking().AsQueryable();
 
             if (!string.IsNullOrEmpty(filter))
             {
@@ -57,13 +57,14 @@ namespace SaleTheaterTickets.Controllers
             return View(model);
         }
 
-        public IActionResult Create(int? ticketId)
+        public IActionResult Create(int ticketId)
         {
-            var dataGenerateSeats = _generatedTicketService.GenerateSeats(ticketId.Value);
-            GeneratedTicketViewModel model = dataGenerateSeats.Item1;
+            var avaibleSeats = _generatedTicketService.GenerateSeats(ticketId);
+            GeneratedTicketViewModel model = new GeneratedTicketViewModel();
+            model.TicketId = ticketId;
 
 
-            if (dataGenerateSeats.Item2.Count == 0)
+            if (avaibleSeats.Count == 0)
             {
                 TempData["Message"] = "Peça não há mais assentos disponíveis";
                 TempData["ColorMessage"] = "danger";
@@ -71,7 +72,7 @@ namespace SaleTheaterTickets.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            ViewBag.AvaiableSeats = dataGenerateSeats.Item2;
+            ViewBag.AvaiableSeats = avaibleSeats;
 
             return View(model);
         }
@@ -82,15 +83,13 @@ namespace SaleTheaterTickets.Controllers
         {
             try
             {
-                var dataGenerateSeats = _generatedTicketService.GenerateSeats(model.TicketId.Value);
+                
 
                 if (ModelState.IsValid)
                 {
-
-
                     var _model = _mapper.Map<GeneratedTicket>(model);
 
-                    _model.Ticket = _ticketRepository.GetById(_model.TicketId.Value);
+                    _model.Ticket = _ticketRepository.GetById(_model.TicketId);
 
                     int age = _generatedTicketService.CalculateAge(_model.BirthDate);
                     var dataCalculateDiscount = _generatedTicketService.CalculateDiscount(age, _model.Ticket.Price, _model.NeedyChild);
@@ -112,9 +111,10 @@ namespace SaleTheaterTickets.Controllers
                         }
                         ModelState.AddModelError("NeedyChild", "Resposta inválida: Cliente não é criança");
                         model = _mapper.Map<GeneratedTicketViewModel>(_model);
-                        
-                        //model = dataGenerateSeats.Item1;
-                        ViewBag.AvaiableSeats = dataGenerateSeats.Item2;
+
+                        var avaibleSeats = _generatedTicketService.GenerateSeats(model.TicketId);
+
+                        ViewBag.AvaiableSeats = avaibleSeats;
                         return View(model);
                     }
                     _model.Total = _model.Ticket.Price - dataCalculateDiscount.Item1;
@@ -128,11 +128,13 @@ namespace SaleTheaterTickets.Controllers
 
                     return RedirectToAction("Checkout", model);
                 }
+                else
+                {
+                    var avaibleSeats = _generatedTicketService.GenerateSeats(model.TicketId);
+                    ViewBag.AvaiableSeats = avaibleSeats;
 
-                model = dataGenerateSeats.Item1;
-                ViewBag.AvaiableSeats = dataGenerateSeats.Item2;
-
-                return View(model);
+                    return View(model);
+                }         
             }
             catch (Exception ex)
             {

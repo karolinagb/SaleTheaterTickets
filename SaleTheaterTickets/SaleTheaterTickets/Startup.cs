@@ -57,7 +57,8 @@ namespace SaleTheaterTickets
                     .ForSourceMember(x => x.QuantityAvaibleSeats, x => x.DoNotValidate()) //ignorando propriedade do source
                     .ForSourceMember(x => x.Pieces, x => x.DoNotValidate());
                 //CreateMap<Contrato, ContratoDto>().ForMember(p => p.Descricao, x => x.Ignore());
-                cfg.CreateMap<GeneratedTicketViewModel, GeneratedTicket>();
+                cfg.CreateMap<GeneratedTicketViewModel, GeneratedTicket>()
+                .ForMember(x => x.CreationDate, x => x.Ignore());
                 cfg.CreateMap<GeneratedTicket, GeneratedTicketViewModel>();
 
             });

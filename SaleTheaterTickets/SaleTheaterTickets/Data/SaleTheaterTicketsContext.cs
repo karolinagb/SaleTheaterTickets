@@ -25,7 +25,7 @@ namespace SaleTheaterTickets.Data
             {
                 x.HasQueryFilter(piece => EF.Property<bool>(piece, "IsDeleted") == false);
                 x.HasKey(p => p.Id);
-                x.Property(p => p.Name).HasColumnType("VARCHAR(300)").IsRequired();
+                x.Property(p => p.Name).HasColumnType("VARCHAR(400)").IsRequired();
             });
             modelBuilder.Entity<Ticket>(x =>
             {
