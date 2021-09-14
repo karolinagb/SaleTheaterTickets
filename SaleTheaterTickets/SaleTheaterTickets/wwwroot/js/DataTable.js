@@ -202,6 +202,52 @@
                 }
             },
             "decimal": ","
-        }
+        },
+        scrollY: 200,
+        select: {
+            items: 'column'
+        },
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                title: null,
+                extend: 'copyHtml5',
+                exportOptions: {
+                    columns: ':visible', 
+                }
+            },
+            {
+                extend: 'csvHtml5',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },
+            {
+                extend: 'excelHtml5',
+                title: null,
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },
+            {
+                extend: 'pdfHtml5',
+                title: null,
+                exportOptions: {
+                    columns: ':visible',
+                }
+            },
+            {
+                extend: 'print',
+                title: '',
+                exportOptions: {
+                    columns: ':visible',
+                    
+                },
+            },
+            'colvis'
+        ],
+        columnDefs: [{
+            visible: false
+        }]
     });
 });
