@@ -245,6 +245,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\Files\UserFiles\Received\" />
     <Folder Include="wwwroot\js\Views\Admin\" />
   </ItemGroup>
 
