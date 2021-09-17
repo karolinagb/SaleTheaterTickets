@@ -1,9 +1,17 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using FluentValidation.Results;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
+using SaleTheaterTickets.Areas.Admin.Services;
 using SaleTheaterTickets.Models;
+using SaleTheaterTickets.Models.Services;
+using SaleTheaterTickets.Models.ViewModelValidators;
 using SaleTheaterTickets.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace SaleTheaterTickets.Controllers
 {
@@ -12,17 +20,26 @@ namespace SaleTheaterTickets.Controllers
     public class AdminPiecesController : Controller
     {
         private readonly IPieceRepository _pieceRepository;
+        private readonly UploadService _uploadService;
+        private readonly PieceService _pieceService;
 
-        public AdminPiecesController(IPieceRepository pieceRepository)
+        public AdminPiecesController(IPieceRepository pieceRepository, UploadService uploadService, PieceService pieceService)
         {
             _pieceRepository = pieceRepository;
+            _uploadService = uploadService;
+            _pieceService = pieceService;
         }
 
-        public ActionResult Index()
+        public ActionResult Index(List<string> importLogs)
         {
+            if (importLogs.Count != 0)
+            {
+                ViewBag.ImportLogs = importLogs;
+            }
+
             IEnumerable<Piece> model;
             model = _pieceRepository.FindAll();
-            return View(model);
+            return View("Areas/Admin/Views/AdminPieces/Index.cshtml", model);
         }
 
         public ActionResult Create()
@@ -31,7 +48,6 @@ namespace SaleTheaterTickets.Controllers
 
         }
 
-        [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Piece model)
         {
@@ -40,6 +56,9 @@ namespace SaleTheaterTickets.Controllers
                 if (ModelState.IsValid)
                 {
                     _pieceRepository.Insert(model);
+
+                    TempData["Message"] = "Registro(s) adicionado(s) com sucesso";
+                    TempData["ColorMessage"] = "success";
 
                     return RedirectToAction("Index");
                 }
@@ -163,6 +182,88 @@ namespace SaleTheaterTickets.Controllers
                 Console.WriteLine(ex.Message);
                 return RedirectToAction("Index");
             }
+        }
+
+        [HttpGet]
+        public ActionResult Upload()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        //método para enviar os arquivos usando a interface IFormFile
+        public async Task<IActionResult> Upload(List<IFormFile> files)
+        {
+            long fileSize = files.Sum(x => x.Length);
+
+            //verifica se existem arquivos
+            if (fileSize == 0)
+            {
+                //retorna a viewbag com erro
+                TempData["Message"] = "Erro : Arquivo(s) não selecionado(s)";
+                TempData["ColorMessage"] = "danger";
+                return View();
+            }
+
+            foreach (var file in files)
+            {
+                if (!file.FileName.Contains(".csv"))
+                {
+                    //monta a ViewBag que será exibida na view como resultado do envio 
+                    TempData["Message"] = "Formato inválido. Faça upload do(s) arquivo(s) no formato .xlsx ou .xls";
+                    TempData["ColorMessage"] = "danger";
+                    return View();
+
+                }
+            }
+
+            string path = await _uploadService.UploadFile(files);
+
+            var pieces = _pieceService.ReadCSVData(path);
+
+            List<string> importLogs = new List<string>();
+
+            var inserted = 0;
+            var errors = 0;
+
+            foreach (var piece in pieces)
+            {
+                Piece p = new Piece
+                {
+                    Name = piece.Name
+                };
+
+                PieceViewModelValidator validations = new PieceViewModelValidator(_pieceService);
+                ValidationResult result = validations.Validate(p);
+
+                if (!result.IsValid)
+                {
+                    foreach (var e in result.Errors.ToList())
+                    {
+                        var message = $"Registro da linha {piece.Line} - {e.PropertyName} : {e.ErrorMessage}";
+                        importLogs.Add(message);
+                    }
+                    errors++;
+                }
+                else
+                {
+                    _pieceRepository.Insert(p);
+                    inserted++;
+                }
+            }
+
+            if (importLogs == null)
+            {
+                TempData["Message"] = "Registro(s) criado(s) com sucesso!";
+                TempData["ColorMessage"] = "sucess";
+
+                return RedirectToAction("Index");
+            }
+
+            TempData["Message"] = $"{inserted} foram inseridos com sucesso - {errors} registros falharam";
+            TempData["ColorMessage"] = "sucess";
+
+            return Index(importLogs); 
         }
     }
 }

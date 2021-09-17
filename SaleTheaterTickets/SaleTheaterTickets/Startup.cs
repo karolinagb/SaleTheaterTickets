@@ -79,6 +79,7 @@ namespace SaleTheaterTickets
             services.AddScoped<TicketSalesReportService>();
             services.AddScoped<PieceService>();
             services.AddScoped<TicketService>();
+            services.AddScoped<UploadService>();
 
             //Adicionando o Fluent Validation ao pipeline
             services.AddMvc().AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<Startup>());
