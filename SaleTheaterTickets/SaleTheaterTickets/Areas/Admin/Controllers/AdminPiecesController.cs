@@ -6,11 +6,13 @@ using Microsoft.AspNetCore.Routing;
 using SaleTheaterTickets.Areas.Admin.Services;
 using SaleTheaterTickets.Models;
 using SaleTheaterTickets.Models.Services;
+using SaleTheaterTickets.Models.ViewModels;
 using SaleTheaterTickets.Models.ViewModelValidators;
 using SaleTheaterTickets.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace SaleTheaterTickets.Controllers
@@ -48,6 +50,7 @@ namespace SaleTheaterTickets.Controllers
 
         }
 
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Piece model)
         {
@@ -205,6 +208,8 @@ namespace SaleTheaterTickets.Controllers
                 return View();
             }
 
+            List<PieceViewModel> pieces = new List<PieceViewModel>();
+
             foreach (var file in files)
             {
                 if (!file.FileName.Contains(".csv"))
@@ -215,14 +220,12 @@ namespace SaleTheaterTickets.Controllers
                     return View();
 
                 }
+                string path = await _uploadService.UploadFile(file);
+
+                pieces = _pieceService.ReadCSVData(path);
             }
 
-            string path = await _uploadService.UploadFile(files);
-
-            var pieces = _pieceService.ReadCSVData(path);
-
             List<string> importLogs = new List<string>();
-
             var inserted = 0;
             var errors = 0;
 
@@ -255,13 +258,21 @@ namespace SaleTheaterTickets.Controllers
             if (importLogs == null)
             {
                 TempData["Message"] = "Registro(s) criado(s) com sucesso!";
-                TempData["ColorMessage"] = "sucess";
+                TempData["ColorMessage"] = "success";
 
                 return RedirectToAction("Index");
             }
 
-            TempData["Message"] = $"{inserted} foram inseridos com sucesso - {errors} registros falharam";
-            TempData["ColorMessage"] = "sucess";
+            if(errors == 0)
+            {
+                TempData["Message"] = $"{inserted} foram inseridos com sucesso - {errors} registros falharam";
+                TempData["ColorMessage"] = "success";
+            }
+            else
+            {
+                TempData["Message"] = $"{inserted} foram inseridos com sucesso - {errors} registros falharam";
+                TempData["ColorMessage"] = "warning";
+            }
 
             return Index(importLogs); 
         }

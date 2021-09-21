@@ -10,15 +10,11 @@
         "projectUniqueName": "C:\\projetos\\SaleTheaterTickets\\SaleTheaterTickets\\SaleTheaterTickets\\SaleTheaterTickets.csproj",
         "projectName": "SaleTheaterTickets",
         "projectPath": "C:\\projetos\\SaleTheaterTickets\\SaleTheaterTickets\\SaleTheaterTickets\\SaleTheaterTickets.csproj",
-        "packagesPath": "C:\\Users\\Karolina\\.nuget\\packages\\",
+        "packagesPath": "C:\\Users\\Karol\\.nuget\\packages\\",
         "outputPath": "C:\\projetos\\SaleTheaterTickets\\SaleTheaterTickets\\SaleTheaterTickets\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Karolina\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Karol\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -113,7 +109,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }

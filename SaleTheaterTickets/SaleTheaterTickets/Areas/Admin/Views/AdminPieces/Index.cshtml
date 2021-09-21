@@ -2,10 +2,12 @@
 
 @if (ViewBag.ImportLogs != null)
 {
-    <div class="col-md-3">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#logModal">
-            Clique para ver os registros que falharam
-        </button>
+    <a class="text-white btn btn-danger" data-toggle="modal" data-target="#logModal">
+        Clique para ver os registros que falharam
+    </a>
+
+    <div class="col-md-6">
+
 
         <!-- Modal -->
         <div class="modal fade" id="logModal" tabindex="-1" aria-labelledby="logModalLabel" aria-hidden="true">
@@ -39,6 +41,8 @@
 
 }
 
+<br />
+
 <div class="row">
     <div class="col-md-3">
 
@@ -64,7 +68,7 @@
                     </div>
                     <div class="modal-footer">
                         <a asp-action="Upload" class="btn btn-secondary">Upload de arquivo csv</a>
-                        <a asp-action="Create" asp-controller="AdminPieces" class="btn btn-primary">Formulário</a>
+                        <a asp-action="Create" class="btn btn-primary">Formulário</a>
                     </div>
                 </div>
             </div>

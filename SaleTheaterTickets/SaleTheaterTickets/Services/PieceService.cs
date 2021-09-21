@@ -2,8 +2,10 @@
 using SaleTheaterTickets.Models.ViewModels;
 using SaleTheaterTickets.Models.ViewModelValidators;
 using SaleTheaterTickets.Repositories.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 
 namespace SaleTheaterTickets.Models.Services
 {
@@ -28,7 +30,7 @@ namespace SaleTheaterTickets.Models.Services
 
             //Retorna todas as linhas do arquivo em um array
             //de string, onde cada linha será um índice do array
-            string[] file = File.ReadAllLines(filePath);
+            string[] file = File.ReadAllLines(filePath, Encoding.GetEncoding("ISO-8859-1"));
 
             //percorro o array e para cada linha
             for (int i = 0; i < file.Length; i++)
