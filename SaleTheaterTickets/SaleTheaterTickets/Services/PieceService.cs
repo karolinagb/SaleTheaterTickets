@@ -1,10 +1,8 @@
-﻿using FluentValidation.Results;
-using SaleTheaterTickets.Models.ViewModels;
-using SaleTheaterTickets.Models.ViewModelValidators;
+﻿using SaleTheaterTickets.Models.ViewModels;
 using SaleTheaterTickets.Repositories.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace SaleTheaterTickets.Models.Services
@@ -52,6 +50,11 @@ namespace SaleTheaterTickets.Models.Services
             }
 
             return pieces;
+        }
+
+        public int GetByName(string name)
+        {
+            return _pieceRepository.GetByName(name);
         }
     }
 }
