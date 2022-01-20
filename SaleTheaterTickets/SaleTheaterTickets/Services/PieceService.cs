@@ -28,7 +28,7 @@ namespace SaleTheaterTickets.Models.Services
 
             //Retorna todas as linhas do arquivo em um array
             //de string, onde cada linha será um índice do array
-            string[] file = File.ReadAllLines(filePath, Encoding.GetEncoding("ISO-8859-1"));
+            string[] file = File.ReadAllLines(filePath, Encoding.GetEncoding("UTF-8"));
 
             //percorro o array e para cada linha
             for (int i = 0; i < file.Length; i++)
