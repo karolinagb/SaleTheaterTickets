@@ -441,3 +441,4 @@ C:\projetos\SaleTheaterTickets\SaleTheaterTickets\SaleTheaterTickets\obj\Debug\n
 C:\projetos\SaleTheaterTickets\SaleTheaterTickets\SaleTheaterTickets\obj\Debug\netcoreapp3.1\SaleTheaterTickets.genruntimeconfig.cache
 C:\projetos\SaleTheaterTickets\SaleTheaterTickets\SaleTheaterTickets\obj\Debug\netcoreapp3.1\SaleTheaterTickets.csproj.AssemblyReference.cache
 C:\projetos\SaleTheaterTickets\SaleTheaterTickets\SaleTheaterTickets\obj\Debug\netcoreapp3.1\SaleTheaterTickets.GeneratedMSBuildEditorConfig.editorconfig
+C:\projetos\SaleTheaterTickets\SaleTheaterTickets\SaleTheaterTickets\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\AdminTickets\Upload.cshtml.g.cs

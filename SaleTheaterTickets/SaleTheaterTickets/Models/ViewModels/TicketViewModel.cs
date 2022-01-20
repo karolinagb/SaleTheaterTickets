@@ -35,5 +35,7 @@ namespace SaleTheaterTickets.Models
         public ICollection<int> Seats { get; set; }
 
         public int QuantityAvaibleSeats { get; set; }
+
+        public int Line { get; set; }
     }
 }

@@ -49,5 +49,10 @@ namespace SaleTheaterTickets.Repositories
         {
             return _saleTheaterTicketsContext.Pieces.Where(x => x.Name.ToLower().Replace(" ", String.Empty) == name.ToLower().Replace(" ", String.Empty)).Count();
         }
+
+        public int GetByName(string name)
+        {
+            return _saleTheaterTicketsContext.Pieces.Where(x => x.Name.ToLower().Replace(" ", String.Empty) == name.ToLower().Replace(" ", String.Empty)).Select(x => x.Id).FirstOrDefault();
+        }
     }
 }

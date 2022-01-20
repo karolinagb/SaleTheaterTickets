@@ -1,7 +1,6 @@
-﻿using AutoMapper;
-using FluentValidation;
-using SaleTheaterTickets.Repositories.Interfaces;
+﻿using FluentValidation;
 using System;
+using System.Text.RegularExpressions;
 
 namespace SaleTheaterTickets.Models.ViewModelValidators
 {
@@ -20,7 +19,8 @@ namespace SaleTheaterTickets.Models.ViewModelValidators
         {
             RuleFor(x => x.Price)
                 .NotEmpty().WithMessage("Digite o preço")
-                .GreaterThan(0).WithMessage("O preço tem que ser maior que 0,00");
+                .GreaterThan(0).WithMessage("O preço tem que ser maior que 0,00")
+                /*.Must(ValidPrice)*/;
             RuleFor(x => x.QuantityOfSeats)
                 .NotEmpty().WithMessage("Digite a quantidade de poltronas")
                 .GreaterThanOrEqualTo(10).WithMessage("A quantidade de poltronas deve ser no mínimo 10");
@@ -49,6 +49,11 @@ namespace SaleTheaterTickets.Models.ViewModelValidators
             //RuleFor(ticket => ticket.Id).NotEmpty().Must(BeUnique).WithMessage("Ingresso existente. Verifique data, hora e peça");
         }
 
+        public string Teste()
+        {
+            return "";
+        }
+
         private static bool ValidDate(DateTime date)
         {
             if (date.Date >= DateTime.Now.Date)
@@ -58,6 +63,16 @@ namespace SaleTheaterTickets.Models.ViewModelValidators
 
             return false;
         }
+
+        //private static bool ValidPrice(decimal price)
+        //{
+        //    if (Regex.IsMatch(price, "@^\d+$"))
+        //    {
+        //        return true;
+        //    }
+
+        //    return false;
+        //}
 
         //private bool BeUnique(int id)
         //{

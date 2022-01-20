@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Cy+whpjKyYJiyqQAF7ndGm22H6uYr1idv0kPfRw5QNl+sDVWblpCEtf6T1WaZ7b2lx8aR3HFcKaD6Ex49hMAKg==",
+  "dgSpecHash": "G+sTXxAGVMaLHTbspJaHpJ/0bz6gGZjv7ask87ijIZJ5yI+aml81cvtrpqYzkcu78d4YLWyuCpPWm/LXiLXDGQ==",
   "success": true,
   "projectFilePath": "C:\\projetos\\SaleTheaterTickets\\SaleTheaterTickets\\SaleTheaterTickets\\SaleTheaterTickets.csproj",
   "expectedPackageFiles": [
@@ -161,5 +161,12 @@
     "C:\\Users\\Karol\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\Karol\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problema ao ler o arquivo de cache C:\\projetos\\SaleTheaterTickets\\SaleTheaterTickets\\SaleTheaterTickets\\obj\\project.nuget.cache: Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
