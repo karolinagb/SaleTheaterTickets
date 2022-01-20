@@ -227,3 +227,9 @@ __pycache__/
 Thumbs.db
 
 SaleTheaterTickets/SaleTheaterTickets/appsettings.json
+*.pdb
+*.dll
+*.pdb
+*.dll
+*.pdb
+*.dll
