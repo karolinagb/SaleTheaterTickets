@@ -239,7 +239,12 @@ namespace SaleTheaterTickets.Controllers
                 PieceViewModelValidator validations = new PieceViewModelValidator(_pieceService);
                 ValidationResult result = validations.Validate(p);
 
-                if (!result.IsValid)
+                if (result.IsValid || importLogs == null)
+                {
+                    _pieceRepository.Insert(p);
+                    inserted++;
+                }
+                else
                 {
                     foreach (var e in result.Errors.ToList())
                     {
@@ -247,11 +252,6 @@ namespace SaleTheaterTickets.Controllers
                         importLogs.Add(message);
                     }
                     errors++;
-                }
-                else
-                {
-                    _pieceRepository.Insert(p);
-                    inserted++;
                 }
             }
 

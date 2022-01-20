@@ -303,7 +303,13 @@ namespace SaleTheaterTickets.Controllers
                     TicketViewModelValidator validations = new TicketViewModelValidator();
                     ValidationResult result = validations.Validate(ticket);
 
-                    if (!result.IsValid || importLogs != null)
+                    if (result.IsValid || importLogs == null)
+                    {
+                        _ticketRepository.Insert(t);
+                        inserted++;
+                        
+                    }
+                    else
                     {
                         foreach (var e in result.Errors.ToList())
                         {
@@ -311,11 +317,6 @@ namespace SaleTheaterTickets.Controllers
                             importLogs.Add(message);
                         }
                         errors++;
-                    }
-                    else
-                    {
-                        _ticketRepository.Insert(t);
-                        inserted++;
                     }
                 }
 
