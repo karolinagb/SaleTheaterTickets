@@ -1,10 +1,8 @@
-﻿using FluentValidation.Results;
-using SaleTheaterTickets.Models.ViewModels;
-using SaleTheaterTickets.Models.ViewModelValidators;
+﻿using SaleTheaterTickets.Models.ViewModels;
 using SaleTheaterTickets.Repositories.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace SaleTheaterTickets.Models.Services
@@ -30,7 +28,7 @@ namespace SaleTheaterTickets.Models.Services
 
             //Retorna todas as linhas do arquivo em um array
             //de string, onde cada linha será um índice do array
-            string[] file = File.ReadAllLines(filePath, Encoding.GetEncoding("ISO-8859-1"));
+            string[] file = File.ReadAllLines(filePath, Encoding.GetEncoding("UTF-8"));
 
             //percorro o array e para cada linha
             for (int i = 0; i < file.Length; i++)
@@ -52,6 +50,11 @@ namespace SaleTheaterTickets.Models.Services
             }
 
             return pieces;
+        }
+
+        public int GetByName(string name)
+        {
+            return _pieceRepository.GetByName(name);
         }
     }
 }
