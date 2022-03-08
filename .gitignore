@@ -230,3 +230,8 @@ SaleTheaterTickets/SaleTheaterTickets/appsettings.json
 
 #Essa é a pasta de arquivos de importação
 Files/
+SaleTheaterTickets/SaleTheaterTickets/appsettings.Production.json
+SaleTheaterTickets/SaleTheaterTickets/appsettings.Development.json
+SaleTheaterTickets/SaleTheaterTickets/appsettings.Development.json
+SaleTheaterTickets/SaleTheaterTickets/appsettings.Development.json
+SaleTheaterTickets/SaleTheaterTickets/SaleTheaterTickets.csproj.user
